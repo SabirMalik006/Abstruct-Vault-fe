@@ -28,7 +28,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1rem;
-  background: #0f172a;
+  background: #194933;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -193,7 +193,7 @@
 }
 
 .action-btn:hover {
-  background: #c4a47a;
+  background: #123325;
   color: white;
 }
 
@@ -307,7 +307,7 @@
 .btn-add-cart {
   width: fit-content;
   padding: 0.75rem 1.5rem;
-  background: #0f172a;
+  background: #194933;
   color: white;
   border: none;
   border-radius: 0.75rem;
@@ -320,7 +320,7 @@
 }
 
 .btn-add-cart:hover {
-  background: #c4a47a;
+  background: #123325;
 }
 
 /* Empty State */

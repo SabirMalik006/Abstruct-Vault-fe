@@ -4,6 +4,8 @@ import { isAuthenticated } from '../services/authService';
 import { getCart as apiGetCart, addToCart as apiAddToCart, updateCartItem as apiUpdateCartItem, removeFromCart as apiRemoveFromCart, clearCart as apiClearCart } from '../services/cartService';
 
 const CartContext = createContext();
+const FALLBACK_CART_IMAGE =
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg';
 
 export const useCart = () => {
   const context = useContext(CartContext);
@@ -44,7 +46,7 @@ export const CartProvider = ({ children }) => {
               (typeof item.image === 'string' && item.image.startsWith('http') ? item.image : '') ||
               item.product?.images?.[0]?.url ||
               item.product?.images?.[0] ||
-              '/images/placeholder.jpg',
+              FALLBACK_CART_IMAGE,
             quantity: item.quantity,
             color: item.selectedColor,
             stock: item.product?.inStock || 100,
@@ -118,7 +120,10 @@ export const CartProvider = ({ children }) => {
           productId: productId,
           name: product.name,
           price: product.price,
-          image: product.images?.[0]?.url || product.image || '/images/placeholder.jpg',
+          image:
+            product.images?.[0]?.url ||
+            product.image ||
+            FALLBACK_CART_IMAGE,
           quantity: quantity,
           color: selectedColor,
           size: selectedSize,

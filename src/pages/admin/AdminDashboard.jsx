@@ -13,6 +13,9 @@ import { getProducts, getCategories } from '../../services/productService';
 import api from '../../services/api';
 import './AdminDashboard.css';
 
+const FALLBACK_ADMIN_IMAGE =
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg';
+
 ChartJS.register(
   CategoryScale, LinearScale, PointElement, LineElement,
   BarElement, Title, Tooltip, Legend, ArcElement,
@@ -172,7 +175,7 @@ export default function AdminDashboard() {
       <div className="dashboard-top">
         <div className="welcome-msg">
           <h1>Industrial Insights</h1>
-          <p>Real-time overview of The Horizon Hub operations.</p>
+          <p>Real-time overview of The Abstruct Vault operations.</p>
         </div>
         <div className="date-picker">
           <FiCalendar /> <span>This Month</span>
@@ -270,7 +273,13 @@ export default function AdminDashboard() {
             {topProducts.map((product) => (
               <div key={product._id} className="elite-item">
                 <div className="item-img">
-                  <img src={product.images?.[0]?.url || product.image || '/images/placeholder.jpg'} alt="" />
+                  <img
+                    src={
+                      product.images?.[0]?.url ||
+                      (product.image && product.image !== '/images/placeholder.jpg' ? product.image : FALLBACK_ADMIN_IMAGE)
+                    }
+                    alt=""
+                  />
                 </div>
                 <div className="item-details">
                   <h4>{product.name}</h4>

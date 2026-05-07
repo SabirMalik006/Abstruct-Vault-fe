@@ -2,12 +2,13 @@
    VARIABLES
    ═══════════════════════════════════════════════════ */
 :root {
-  --navbar-dark: #1a1a1a;
-  --navbar-dark-secondary: #2d2d2d;
-  --navbar-accent: #c4a47a; /* Gold Primary */
-  --navbar-accent-dark: #b39369;
-  --navbar-text-light: rgba(255, 255, 255, 0.9);
-  --navbar-text-muted: rgba(255, 255, 255, 0.6);
+  --navbar-bg: #f4efe7;
+  --navbar-bg-scrolled: #FAF7F2;
+  --navbar-text-main: #111827; /* gray-900 */
+  --navbar-text-muted: #4b5563; /* gray-600 */
+  --navbar-accent: #194933; /* primary green */
+  --navbar-accent-dark: #123325;
+  --navbar-border: rgba(17, 24, 39, 0.08);
 
   /* Header Heights */
   --ann-height: 36px;
@@ -25,7 +26,7 @@
   right: 0;
   z-index: 1001;
   height: var(--ann-height);
-  background: #000;
+  background: #4a3728; /* Brown type color */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -43,7 +44,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--navbar-accent);
+  color: #ffffff;
   padding-right: 4rem;
 }
 
@@ -61,21 +62,19 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled {
-  background: #000;
+  background: var(--navbar-bg-scrolled);
   height: 60px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
 .navbar.menu-open {
-  background: #000;
+  background: var(--navbar-bg);
   top: 0 !important;
   height: 70px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -104,43 +103,21 @@
 
 .nb-brand {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
   line-height: 1;
-  width: 140px;
 }
 
-/* Show only top portion of the logo image */
-.nb-brand-mark {
-  width: 140px;
-  height: 45px;
-  overflow: hidden;
-  border-radius: 3px;
-}
-
-.nb-brand-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.navbar.scrolled .nb-brand {
-  width: 175px;  /* ← YEH BLOCK ADD KARO */
-}
-.navbar.scrolled .nb-brand-mark {
-  height: 30px;
-  width: 175px;
-}
-
-.nb-brand-byline {
-  font-size: 7px;
+.nb-brand-name {
+  font-size: 18px;
   font-weight: 700;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--navbar-text-main);
+  letter-spacing: 0.04em;
   white-space: nowrap;
-  text-align: center;  /* ← YEH LINE ADD KARO */
-  width: 100%;         /* ← YEH LINE ADD KARO */
+  text-transform: uppercase;
+}
+
+.navbar.scrolled .nb-brand-name {
+  color: var(--navbar-text-main);
 }
 
 .sr-only {
@@ -165,25 +142,33 @@
 
 .nb-links li a,
 .nav-drop-btn {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--navbar-text-light);
+  color: var(--navbar-text-main);
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
+  letter-spacing: 0.1em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: none;
   border: none;
-  padding: 0.5rem 0;
+  padding: 8px 16px;
+  border-radius: 100px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  position: relative;
 }
 
-.nb-links li a:hover,
+.nb-links li a:hover {
+  background: rgba(25, 73, 51, 0.15);
+  color: var(--navbar-accent);
+  transform: translateY(-1px);
+}
+
 .nav-drop-btn:hover,
 .nav-drop-btn.active {
+  background: rgba(25, 73, 51, 0.15);
   color: var(--navbar-accent);
 }
 
@@ -333,7 +318,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--navbar-text-main);
   text-decoration: none;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -341,8 +326,10 @@
 }
 
 .nb-icon:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(25, 73, 51, 0.1) !important;
   color: var(--navbar-accent);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(25, 73, 51, 0.1);
 }
 
 .nb-badge {
@@ -350,7 +337,7 @@
   top: 5px;
   right: 5px;
   background: var(--navbar-accent);
-  color: #000;
+  color: #ecfdf3;
   font-size: 0.65rem;
   font-weight: 700;
   width: 16px;
@@ -379,7 +366,7 @@
   display: none;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--navbar-text-main);
   cursor: pointer;
   padding: 0.5rem;
   z-index: 2001;
@@ -394,7 +381,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: #000000;
+  background: #111827;
   z-index: 2000;
   display: flex;
   flex-direction: column;
@@ -416,7 +403,7 @@
   justify-content: space-between;
   gap: 15px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  background: #000;
+  background: #111827;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -432,8 +419,8 @@
 .mobile-search-bar input {
   width: 100%;
   padding: 10px 10px 10px 35px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(31,41,55,0.9);
+  border: 1px solid rgba(55,65,81,0.9);
   border-radius: 8px;
   color: #fff;
   font-size: 14px;
@@ -446,7 +433,7 @@
 }
 
 .mobile-close {
-  background: rgba(255,255,255,0.1);
+  background: rgba(31,41,55,0.9);
   border: none;
   color: #fff;
   cursor: pointer;
@@ -460,7 +447,7 @@
 }
 
 .mobile-close:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(55,65,81,1);
 }
 
 .mobile-menu-content {
@@ -481,7 +468,7 @@
   padding: 1rem 2rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #fff;
+  color: #e5e7eb;
   text-decoration: none;
   width: 100%;
   text-align: left;

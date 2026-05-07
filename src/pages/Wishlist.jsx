@@ -14,7 +14,7 @@ export default function Wishlist() {
         <h2>Your wishlist is empty</h2>
         <p>Save essential industrial gear for later!</p>
         <Link to="/collections/all-products" className="btn-shop">
-          Browse Collection <FiArrowRight />
+          <span>Browse Collection</span>
         </Link>
       </div>
     );

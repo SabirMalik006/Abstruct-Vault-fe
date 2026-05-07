@@ -230,7 +230,7 @@
   left: 3px;
   width: 10px;
   height: 10px;
-  background: #c4a47a;
+  background: #194933;
   border-radius: 50%;
 }
 
@@ -545,7 +545,7 @@
   width: 100%;
   max-width: 500px;
   padding: 1.25rem;
-  background: #c4a47a;
+  background: #194933;
   color: white;
   border: none;
   border-radius: 0.75rem;
@@ -563,7 +563,7 @@
 }
 
 .btn-place-order:hover:not(:disabled) {
-  background: #b39369;
+  background: #123325;
   transform: translateY(-2px);
   box-shadow: 0 15px 30px rgba(196, 164, 122, 0.3);
 }

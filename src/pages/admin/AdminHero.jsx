@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiPlus, FiEdit2, FiTrash2, FiX, FiAlertTriangle, FiImage, FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiX, FiAlertTriangle, FiImage, FiEye, FiEyeOff, FiChevronDown, FiArrowRight, FiLink, FiLayers, FiCheck } from 'react-icons/fi';
 import { getAllHeroes, createHero, updateHero, deleteHero } from '../../services/heroService';
 import toast from 'react-hot-toast';
 import './AdminHero.css';
@@ -175,97 +175,152 @@ export default function AdminHero() {
       {/* Add / Edit Modal */}
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content large" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>{editingHero ? 'Edit Hero Slide' : 'Add Hero Slide'}</h2>
-              <button className="close-modal" onClick={closeModal}><FiX /></button>
+          <div className="modal-content large order-details-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header premium-header">
+              <div className="header-top">
+                <div className="id-badge">
+                  <FiLayers />
+                  <span>{editingHero ? 'Edit Slide' : 'New Hero Slide'}</span>
+                </div>
+              </div>
+              <button className="close-modal-btn" onClick={closeModal}><FiX /></button>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Title *</label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="e.g. Professional Safety Equipment"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Subtitle</label>
-                <input
-                  type="text"
-                  value={formData.subtitle}
-                  onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  placeholder="e.g. Trusted by 1000+ professionals"
-                />
-              </div>
-              <div className="form-group">
-                <label>Image URL *</label>
-                <input
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  placeholder="https://example.com/image.jpg"
-                  required
-                />
-                <small style={{ fontSize: '12px', color: '#999', marginTop: '6px', display: 'block' }}>
-                  Use a direct image link (Pexels, Unsplash, Cloudinary, etc.)
-                </small>
-                {formData.imageUrl && (
-                  <div className="image-preview">
-                    <img src={formData.imageUrl} alt="Preview" onError={(e) => e.target.style.display = 'none'} />
+
+            <div className="order-details-body">
+              <form onSubmit={handleSubmit} className="admin-premium-form">
+                <div className="details-layout">
+                  {/* Left Column: Content */}
+                  <div className="details-left">
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiEdit2 /> <h3>Slide Content</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="admin-form-group">
+                          <label>Main Title *</label>
+                          <input
+                            type="text"
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            placeholder="e.g. Summer Collection 2024"
+                            required
+                          />
+                        </div>
+                        <div className="admin-form-group">
+                          <label>Subtitle / Tagline</label>
+                          <input
+                            type="text"
+                            value={formData.subtitle}
+                            onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
+                            placeholder="e.g. Up to 50% Off on Premium Essentials"
+                          />
+                        </div>
+                        <div className="admin-form-group">
+                          <label>Description</label>
+                          <textarea
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                            rows="3"
+                            placeholder="Brief context for this slide..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiLink /> <h3>Call to Action</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="form-row-2">
+                          <div className="admin-form-group">
+                            <label>Button Label</label>
+                            <input
+                              type="text"
+                              value={formData.buttonText}
+                              onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
+                              placeholder="Shop Now"
+                            />
+                          </div>
+                          <div className="admin-form-group">
+                            <label>Button Link</label>
+                            <input
+                              type="text"
+                              value={formData.buttonLink}
+                              onChange={(e) => setFormData({ ...formData, buttonLink: e.target.value })}
+                              placeholder="/collections/new-arrivals"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Button Text</label>
-                  <input
-                    type="text"
-                    value={formData.buttonText}
-                    onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
-                    placeholder="Shop Now"
-                  />
+
+                  {/* Right Column: Settings & Media */}
+                  <div className="details-right">
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiImage /> <h3>Slide Media</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="admin-form-group">
+                          <label>Background Image URL *</label>
+                          <div className="url-input-group">
+                            <input
+                              type="url"
+                              value={formData.imageUrl}
+                              onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                              placeholder="https://images.unsplash.com/..."
+                              required
+                            />
+                          </div>
+                        </div>
+                        {formData.imageUrl && (
+                          <div className="hero-preview-box">
+                            <img src={formData.imageUrl} alt="Preview" />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiLayers /> <h3>Display Settings</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="admin-form-group">
+                          <label>Sequence Order</label>
+                          <input
+                            type="number"
+                            value={formData.order}
+                            onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
+                            min="1"
+                          />
+                        </div>
+                        <div className="admin-form-group checkbox-group">
+                          <label className="premium-checkbox">
+                            <input
+                              type="checkbox"
+                              checked={formData.isActive}
+                              onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
+                            />
+                            <span>Active Slide (Show in Carousel)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="form-actions-premium">
+                      <button type="button" className="btn-cancel" onClick={closeModal}>Cancel</button>
+                      <button type="submit" className="btn-save" disabled={submitting}>
+                        {submitting ? 'Processing...' : editingHero ? 'Update Slide' : 'Create Slide'}
+                        {!submitting && <FiArrowRight />}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <label>Button Link</label>
-                  <input
-                    type="text"
-                    value={formData.buttonLink}
-                    onChange={(e) => setFormData({ ...formData, buttonLink: e.target.value })}
-                    placeholder="/collections/all-products"
-                  />
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Display Order</label>
-                  <input
-                    type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
-                    min="1"
-                  />
-                </div>
-                <div className="form-group checkbox" style={{ justifyContent: 'flex-end', paddingTop: '28px' }}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={formData.isActive}
-                      onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    />
-                    Active (Show on homepage)
-                  </label>
-                </div>
-              </div>
-              <div className="modal-actions">
-                <button type="button" onClick={closeModal} className="btn-secondary">Cancel</button>
-                <button type="submit" className="btn-primary" disabled={submitting}>
-                  {submitting ? 'Saving...' : editingHero ? 'Update' : 'Create'}
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       )}
@@ -278,7 +333,7 @@ export default function AdminHero() {
               <FiAlertTriangle />
             </div>
             <h3>Delete Slide</h3>
-            <p>Are you sure you want to delete the slide <strong>"{heroToDelete.title}"</strong>? This cannot be undone.</p>
+            <p>Are you sure you want to delete <strong>"{heroToDelete.title}"</strong>? This action cannot be reversed.</p>
             <div className="confirm-modal-actions">
               <button className="confirm-cancel-btn" onClick={() => setDeleteModalOpen(false)}>
                 Cancel

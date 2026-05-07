@@ -1,7 +1,8 @@
 .footer {
-  background: #262626;
-  color: rgba(255, 255, 255, 0.75);
+  background: #FAF7F2;
+  color: #111827;
   margin-top: 5rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.05);
 }
 
 .footer-top {
@@ -15,7 +16,7 @@
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--white);
+  color: #111827;
   display: block;
   margin-bottom: 1rem;
 }
@@ -36,27 +37,27 @@
 .social-links a {
   width: 38px;
   height: 38px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.7);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(17, 24, 39, 0.75);
   font-size: 1rem;
   transition: all 0.2s;
 }
 
 .social-links a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(196, 168, 130, 0.1);
+  border-color: #194933;
+  color: #fff;
+  background: #194933;
 }
 
 .footer-col h4 {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--white);
+  color: #111827;
   margin-bottom: 1.25rem;
   letter-spacing: 0.02em;
 }
@@ -70,12 +71,12 @@
 
 .footer-col ul li a {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #4b5563;
   transition: color 0.2s;
 }
 
 .footer-col ul li a:hover {
-  color: var(--accent);
+  color: #194933;
 }
 
 .newsletter-form {
@@ -86,9 +87,9 @@
 .newsletter-form input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: #fff;
+  color: #111827;
   font-family: var(--font-body);
   font-size: 0.85rem;
   outline: none;
@@ -96,16 +97,16 @@
 }
 
 .newsletter-form input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #9ca3af;
 }
 
 .newsletter-form input:focus {
-  border-color: var(--accent);
+  border-color: #194933;
 }
 
 .newsletter-form button {
   padding: 10px 16px;
-  background: var(--accent);
+  background: #194933;
   color: white;
   font-size: 0.82rem;
   font-weight: 600;
@@ -117,11 +118,11 @@
 }
 
 .newsletter-form button:hover {
-  background: var(--accent-dark);
+  background: #123325;
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(148, 163, 184, 0.5);
   padding: 1.5rem 24px;
   display: flex;
   align-items: center;
@@ -132,7 +133,7 @@
 
 .footer-bottom p {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: #6b7280;
 }
 
 .payment-badges {
@@ -145,9 +146,9 @@
   font-size: 0.72rem;
   font-weight: 600;
   padding: 4px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.7);
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #4b5563;
   letter-spacing: 0.03em;
 }
 
@@ -186,7 +187,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #c4a47a;
+  background: #194933;
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -207,7 +208,7 @@
 }
 
 .footer-feedback-btn:hover {
-  background: #b08d5f;
+  background: #123325;
   transform: translateY(-3px) scale(1.02);
   animation-play-state: paused;
   box-shadow: 0 10px 25px rgba(196, 164, 122, 0.4);
@@ -373,10 +374,10 @@
   resize: none;
 }
 
-.feedback-modal .submit-btn {
+.feedback-modal .submit-btn, .btn-green {
   width: 100%;
   padding: 16px;
-  background: #c4a47a;
+  background: #194933;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -396,7 +397,7 @@
 }
 
 .feedback-modal .submit-btn:hover {
-  background: #b08d5f;
+  background: #123325;
   box-shadow: 0 6px 15px rgba(196, 164, 122, 0.3);
   transform: translateY(-2px);
 }

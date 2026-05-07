@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FiHeart, FiShoppingCart, FiShare2, FiTruck, FiRefreshCw, FiShield, FiStar, FiMinus, FiPlus, FiChevronRight } from 'react-icons/fi';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
@@ -16,6 +16,9 @@ const colorMap = {
   'Navy': '#1B2A4A', 'Olive': '#6B6E3E', 'Red': '#C41E3A',
   'Blue': '#1E3A8A', 'Yellow': '#EAB308', 'Gray': '#6B7280'
 };
+
+const FALLBACK_IMAGE =
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg';
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -120,7 +123,7 @@ export default function ProductDetail() {
   // Helper functions
   const getProductImage = (img) => {
     if (typeof img === 'string') return img;
-    return img?.url || '/images/placeholder.jpg';
+    return img?.url || FALLBACK_IMAGE;
   };
 
   const getProductImages = () => {
@@ -128,7 +131,7 @@ export default function ProductDetail() {
     if (product.images?.length) {
       return product.images.map(img => getProductImage(img));
     }
-    return ['/images/placeholder.jpg'];
+    return [FALLBACK_IMAGE];
   };
 
   const getProductColors = () => {
@@ -166,7 +169,7 @@ export default function ProductDetail() {
   const formattedRelated = related.map(p => ({
     ...p,
     id: p._id,
-    image: p.images?.[0]?.url || '/images/placeholder.jpg',
+    image: p.images?.[0]?.url || p.image || FALLBACK_IMAGE,
     originalPrice: p.comparePrice,
     discount: p.comparePrice && p.comparePrice > p.price 
       ? Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100) 

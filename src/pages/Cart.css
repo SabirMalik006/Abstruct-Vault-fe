@@ -129,7 +129,7 @@
 }
 
 .qty-stepper button:hover:not(:disabled) {
-  background: #0f172a;
+  background: #194933;
   color: white;
 }
 
@@ -255,7 +255,7 @@
 .btn-checkout {
   width: 100%;
   padding: 1.1rem;
-  background: #0f172a;
+  background: #194933;
   color: white;
   border: none;
   border-radius: 1rem;
@@ -334,7 +334,7 @@
 
 .empty-cart-card .btn-primary {
   padding: 1rem 2rem;
-  background: #0f172a;
+  background: #194933;
   color: white;
   text-decoration: none;
   border-radius: 0.75rem;

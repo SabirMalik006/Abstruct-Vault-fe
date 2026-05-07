@@ -9,6 +9,12 @@ import { SkeletonGrid } from '../components/ProductSkeleton';
 import toast from 'react-hot-toast';
 import './Collections.css';
 
+const FALLBACK_PRODUCT_IMAGES = [
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg',
+  'https://images.pexels.com/photos/5357150/pexels-photo-5357150.jpeg',
+  'https://images.pexels.com/photos/5466150/pexels-photo-5466150.jpeg',
+];
+
 const Collections = () => {
   const { slug } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -177,7 +183,14 @@ const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted 
   return (
     <div className={`product-card ${viewMode}`}>
       <div className="card-image-wrap">
-        <img src={product.images?.[0]?.url || product.image || '/images/placeholder.jpg'} alt={product.name} />
+        <img
+          src={
+            product.images?.[0]?.url ||
+            (product.image && product.image !== '/images/placeholder.jpg' ? product.image : null) ||
+            FALLBACK_PRODUCT_IMAGES[0]
+          }
+          alt={product.name}
+        />
         {product.comparePrice > product.price && (
           <span className="sale-badge">Sale</span>
         )}

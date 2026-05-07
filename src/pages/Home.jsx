@@ -24,6 +24,12 @@ export default function Home() {
   const [bestSellers, setBestSellers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const FALLBACK_PRODUCT_IMAGES = [
+    'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg',
+    'https://images.pexels.com/photos/5357150/pexels-photo-5357150.jpeg',
+    'https://images.pexels.com/photos/5466150/pexels-photo-5466150.jpeg',
+  ];
+
   // Fetch data from backend
   useEffect(() => {
     const fetchHomeData = async () => {
@@ -47,30 +53,30 @@ export default function Home() {
           setHeroSlides([
             {
               id: 1,
-              tag: 'Season End Sale',
-              title: 'Protective Goggles',
-              subtitle: 'Close-up Photo of Pliers and Protective Goggles',
+              tag: 'New Arrival',
+              title: 'Modern\nElegance',
+              subtitle: 'Step into the new season with our curated collection of sophisticated styles.',
               cta: 'Shop Now',
               ctaPath: '/collections/all-products',
-              image: 'https://images.pexels.com/photos/9242909/pexels-photo-9242909.jpeg',
+              image: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg',
             },
             {
               id: 2,
-              tag: 'New Arrivals',
-              title: 'Construction Helmet',
-              subtitle: 'Yellow Construction Helmet on Industrial Site',
+              tag: 'Limited Edition',
+              title: 'Minimalist\nAesthetics',
+              subtitle: 'Premium fabrics and timeless silhouettes for the modern wardrobe.',
               cta: 'Explore Collection',
               ctaPath: '/collections/all-products',
-              image: 'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg',
+              image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg',
             },
             {
               id: 3,
-              tag: "Men's Collection",
-              title: 'Hand Tools',
-              subtitle: 'Flat Lay Photography of Hand Tools',
-              cta: 'Shop Wallets',
+              tag: 'Exclusive',
+              title: 'Signature\nCollection',
+              subtitle: 'Exquisite designs crafted for those who appreciate the finer things in life.',
+              cta: 'Shop Collection',
               ctaPath: '/collections/all-products',
-              image: 'https://images.pexels.com/photos/1029243/pexels-photo-1029243.jpeg',
+              image: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg',
             },
           ]);
         }
@@ -78,18 +84,31 @@ export default function Home() {
         // Fetch featured products from backend
         const productsRes = await getProducts({ featured: 'true' });
         if (productsRes.success && productsRes.data.length > 0) {
-          // Convert backend product format to frontend ProductCard expected format
-          const formattedProducts = productsRes.data.map(product => ({
-            id: product._id,
-            name: product.name,
-            price: product.price,
-            comparePrice: product.comparePrice,
-            image: product.images?.[0]?.url || '/images/placeholder.jpg',
-            slug: product.slug,
-            rating: product.rating,
-            reviewCount: product.numReviews,
-            colors: product.colors || [],
-          }));
+          const formattedProducts = productsRes.data
+            .filter(product => product.stock > 0) // Only show in-stock products
+            .map(product => ({
+              id: product._id,
+              name: product.name,
+              price: product.price,
+              comparePrice: product.comparePrice,
+              originalPrice: product.comparePrice, // for compatibility with ProductCard
+              stock: product.stock,
+              inStock: product.inStock,
+              category: product.category?.name || 'Premium Collection',
+              badge: product.isFeatured ? 'Featured' : '',
+              image:
+                product.images?.[0]?.url ||
+                product.image ||
+                FALLBACK_PRODUCT_IMAGES[0],
+              images: product.images,
+              slug: product.slug,
+              rating: product.rating || 4.5, // fallback for UI
+              reviewCount: product.numReviews || 12, // fallback for UI
+              colors: product.colors || [],
+              discount: product.comparePrice > product.price 
+                ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100) 
+                : 0
+            }));
           setBestSellers(formattedProducts);
         } else {
           // Fallback to mock products
@@ -101,30 +120,30 @@ export default function Home() {
         setHeroSlides([
           {
             id: 1,
-            tag: 'Season End Sale',
-            title: 'Protective Goggles',
-            subtitle: 'Close-up Photo of Pliers and Protective Goggles',
+            tag: 'New Arrival',
+            title: 'Modern\nElegance',
+            subtitle: 'Step into the new season with our curated collection of sophisticated styles.',
             cta: 'Shop Now',
-            ctaPath: '/collections/best-selling',
-            image: 'https://images.pexels.com/photos/9242909/pexels-photo-9242909.jpeg',
+            ctaPath: '/collections/all-products',
+            image: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg',
           },
           {
             id: 2,
-            tag: 'New Arrivals',
-            title: 'Construction Helmet',
-            subtitle: 'Yellow Construction Helmet on Industrial Site',
+            tag: 'Limited Edition',
+            title: 'Minimalist\nAesthetics',
+            subtitle: 'Premium fabrics and timeless silhouettes for the modern wardrobe.',
             cta: 'Explore Collection',
-            ctaPath: '/collections/best-selling',
-            image: 'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg',
+            ctaPath: '/collections/all-products',
+            image: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg',
           },
           {
             id: 3,
-            tag: "Men's Collection",
-            title: 'Hand Tools',
-            subtitle: 'Flat Lay Photography of Hand Tools',
-            cta: 'Shop Wallets',
-            ctaPath: '/collections/best-selling',
-            image: 'https://images.pexels.com/photos/1029243/pexels-photo-1029243.jpeg',
+            tag: 'Exclusive',
+            title: 'Signature\nCollection',
+            subtitle: 'Exquisite designs crafted for those who appreciate the finer things in life.',
+            cta: 'Shop Collection',
+            ctaPath: '/collections/all-products',
+            image: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg',
           },
         ]);
         setBestSellers(mockProducts.slice(0, 8));
@@ -148,10 +167,10 @@ export default function Home() {
   if (loading) {
     return (
       <div className="home">
-        <div style={{ 
-          minHeight: '100vh', 
-          display: 'flex', 
-          alignItems: 'center', 
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
           justifyContent: 'center',
           background: 'var(--steel)',
           flexDirection: 'column',
@@ -165,8 +184,8 @@ export default function Home() {
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite'
           }}></div>
-          <p style={{ 
-            color: 'rgba(255,255,255,0.6)', 
+          <p style={{
+            color: 'rgba(255,255,255,0.6)',
             fontFamily: 'var(--font-body)',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
@@ -263,7 +282,7 @@ export default function Home() {
               {categories.map(cat => (
                 <Link key={cat.id} to={`/collections/${cat.slug}`} className="cat-card">
                   <div className="cat-image">
-                    <img src={cat.image} alt={cat.name} />
+                    <img src={cat.image || FALLBACK_PRODUCT_IMAGES[0]} alt={cat.name} />
                     <div className="cat-overlay" />
                   </div>
                   <div className="cat-info">
@@ -299,11 +318,27 @@ export default function Home() {
             <div className="promo-text">
               <span className="promo-tag">Limited Time Offer</span>
               <h2>Season End Sale — Up to 20% Off!</h2>
-              <p>Grab your favourite styles before they're gone. Free delivery on orders above Rs.3,999.</p>
+              <p>Grab your favourite styles before they're gone. Elevate your wardrobe with our premium collection of curated fashion pieces.</p>
+              
+              <div className="promo-features">
+                <div className="p-feat">
+                  <FiTruck />
+                  <span>Free Delivery Over Rs.10,000</span>
+                </div>
+                <div className="p-feat">
+                  <FiShield />
+                  <span>100% Premium Quality</span>
+                </div>
+                <div className="p-feat">
+                  <FiRefreshCw />
+                  <span>Easy 7-Day Returns</span>
+                </div>
+              </div>
+
               <Link to="/collections/all-products" className="hero-btn">Shop the Sale <FiArrowRight /></Link>
             </div>
             <div className="promo-image">
-              <img src="https://images.pexels.com/photos/5357150/pexels-photo-5357150.jpeg" alt="Sale" />
+              <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg" alt="Season End Sale" />
             </div>
           </div>
         </section>
@@ -325,7 +360,11 @@ export default function Home() {
                     </div>
                     <p className="review-text">"{r.comment}"</p>
                     <div className="reviewer">
-                      <div className="reviewer-avatar">{r.name[0]}</div>
+                      {r.image ? (
+                        <img src={r.image} alt={r.name} className="reviewer-img" />
+                      ) : (
+                        <div className="reviewer-avatar">{r.name[0]}</div>
+                      )}
                       <div>
                         <strong>{r.name}</strong>
                         <span>{r.location} · {r.date}</span>
@@ -342,16 +381,16 @@ export default function Home() {
         <section className="instagram-section">
           <div className="container" style={{ textAlign: 'center' }}>
             <p className="section-tag">Follow Us</p>
-            <h2 className="section-title">@Horizon.pk</h2>
+            <h2 className="section-title">@AbstructVault.pk</h2>
             <p className="section-subtitle">Tag us in your photos for a chance to be featured!</p>
             <div className="instagram-grid">
               {[
-                'https://images.pexels.com/photos/14528645/pexels-photo-14528645.jpeg',
-                'https://images.pexels.com/photos/5466150/pexels-photo-5466150.jpeg',
-                'https://images.pexels.com/photos/7723358/pexels-photo-7723358.jpeg',
-                'https://images.pexels.com/photos/18510503/pexels-photo-18510503.jpeg',
-                'https://images.pexels.com/photos/20844818/pexels-photo-20844818.jpeg',
-                'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg',
+                'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg',
+                'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg',
+                'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg',
+                'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg',
+                'https://images.pexels.com/photos/2043590/pexels-photo-2043590.jpeg',
+                'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg',
               ].map((img, i) => (
                 <div key={i} className="ig-item">
                   <img src={img} alt={`Instagram ${i + 1}`} />

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiEye, FiPackage, FiTruck, FiCheckCircle, FiXCircle, FiClock, FiX, FiMapPin, FiUser, FiPhone, FiCreditCard, FiAlertTriangle, FiArrowRight } from 'react-icons/fi';
+import { FiEye, FiPackage, FiTruck, FiCheckCircle, FiXCircle, FiClock, FiX, FiMapPin, FiUser, FiPhone, FiCreditCard, FiAlertTriangle, FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { getAllOrders, updateOrderStatus, verifyPayment, rejectPayment } from '../../services/orderService';
 import toast from 'react-hot-toast';
 import './AdminOrders.css';
@@ -178,123 +178,171 @@ export default function AdminOrders() {
       {selectedOrder && (
         <div className="modal-overlay" onClick={() => setSelectedOrder(null)}>
           <div className="modal-content large order-details-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <div>
-                <h2>Order #{selectedOrder._id?.slice(-8).toUpperCase()}</h2>
-                <div className="header-badges">
-                  <span className={`status-pill ${selectedOrder.orderStatus}`}>
-                    {selectedOrder.orderStatus}
-                  </span>
+            <div className="modal-header premium-header">
+              <div className="header-top">
+                <div className="id-badge">
+                  <FiPackage />
+                  <span>Order #{selectedOrder._id?.slice(-8).toUpperCase()}</span>
+                </div>
+                <div className={`status-pill large ${selectedOrder.orderStatus}`}>
+                  {statusIcons[selectedOrder.orderStatus]} {selectedOrder.orderStatus}
                 </div>
               </div>
-              <button className="close-modal" onClick={() => setSelectedOrder(null)}><FiX /></button>
+              <button className="close-modal-btn" onClick={() => setSelectedOrder(null)}><FiX /></button>
             </div>
 
-            <div className="order-details-body" style={{ padding: '24px' }}>
-              <div className="details-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
-                {/* Left Side: Customer & Shipping */}
+            <div className="order-details-body">
+              <div className="details-layout">
+                {/* Left Side: Information */}
                 <div className="details-left">
-                  <div className="details-card" style={{ marginBottom: '24px' }}>
-                    <h3 style={{ fontSize: '15px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <FiUser /> Customer Info
-                    </h3>
-                    <div className="info-list" style={{ fontSize: '14px' }}>
-                      <p><strong>Name:</strong> {selectedOrder.user?.name}</p>
-                      <p><strong>Email:</strong> {selectedOrder.user?.email}</p>
-                      <p><strong>Phone:</strong> {selectedOrder.shippingAddress?.phone}</p>
+                  <div className="info-card">
+                    <div className="card-header">
+                      <FiUser /> <h3>Customer Information</h3>
                     </div>
-                  </div>
-
-                  <div className="details-card">
-                    <h3 style={{ fontSize: '15px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <FiMapPin /> Shipping Address
-                    </h3>
-                    <div className="addr-p" style={{ fontSize: '14px', lineHeight: '1.6', color: '#666' }}>
-                      <p>{selectedOrder.shippingAddress?.fullName}</p>
-                      <p>{selectedOrder.shippingAddress?.address}</p>
-                      <p>{selectedOrder.shippingAddress?.city}, {selectedOrder.shippingAddress?.state} {selectedOrder.shippingAddress?.zipCode}</p>
-                    </div>
-                  </div>
-
-                  {/* Payment Proof Section */}
-                  {selectedOrder.paymentMethod !== 'cod' && (
-                    <div className="payment-proof-section" style={{ marginTop: '24px', padding: '16px', background: '#f8f9fa', borderRadius: '12px' }}>
-                      <h3 style={{ fontSize: '14px', marginBottom: '12px' }}><FiCreditCard /> Payment Details</h3>
-                      <p style={{ fontSize: '13px' }}><strong>Method:</strong> {selectedOrder.paymentMethod.toUpperCase()}</p>
-                      <p style={{ fontSize: '13px' }}><strong>Transaction ID:</strong> {selectedOrder.paymentProof?.transactionId || 'N/A'}</p>
-                      
-                      {selectedOrder.paymentProof?.screenshotUrl && (
-                        <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
-                          <a href={selectedOrder.paymentProof.screenshotUrl} target="_blank" rel="noreferrer" className="btn-secondary" style={{ fontSize: '12px', padding: '6px 12px' }}>
-                            View Proof
-                          </a>
-                        </div>
-                      )}
-
-                      {selectedOrder.paymentStatus === 'pending_verification' && (
-                        <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
-                          <button className="btn-primary" style={{ fontSize: '12px', flex: 1 }} onClick={() => handleVerify(selectedOrder._id)}>Approve</button>
-                          <button className="btn-secondary" style={{ fontSize: '12px', flex: 1, color: '#dc3545' }} onClick={() => handleReject(selectedOrder._id)}>Reject</button>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Right Side: Items & Action */}
-                <div className="details-right">
-                  <div className="details-card" style={{ marginBottom: '24px' }}>
-                    <h3 style={{ fontSize: '15px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <FiPackage /> Order Items
-                    </h3>
-                    <div className="items-list" style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: '16px' }}>
-                      {selectedOrder.orderItems?.map((item, idx) => (
-                        <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0f0f0', fontSize: '13px' }}>
-                          <span>{item.quantity}x {item.name}</span>
-                          <span>Rs.{(item.price * item.quantity).toLocaleString()}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="summary" style={{ background: '#f8f9fa', padding: '12px', borderRadius: '8px', fontSize: '13px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>Subtotal</span><span>Rs.{selectedOrder.itemsPrice?.toLocaleString()}</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}><span>Shipping</span><span>Rs.{selectedOrder.shippingPrice?.toLocaleString()}</span></div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '700', fontSize: '15px', marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #ddd' }}>
-                        <span>Total</span><span>Rs.{selectedOrder.totalPrice?.toLocaleString()}</span>
+                    <div className="card-body">
+                      <div className="data-row">
+                        <span>Full Name</span>
+                        <strong>{selectedOrder.user?.name || selectedOrder.shippingAddress?.fullName}</strong>
+                      </div>
+                      <div className="data-row">
+                        <span>Email Address</span>
+                        <strong>{selectedOrder.user?.email || 'N/A'}</strong>
+                      </div>
+                      <div className="data-row">
+                        <span>Phone Number</span>
+                        <strong>{selectedOrder.shippingAddress?.phone}</strong>
                       </div>
                     </div>
                   </div>
 
-                  <div className="details-card action-card" style={{ padding: '20px', background: '#fff', border: '1px solid #e4a47a', borderRadius: '16px' }}>
-                    <h3 style={{ fontSize: '15px', marginBottom: '16px' }}>Update Status</h3>
-                    <div className="form-group" style={{ marginBottom: '16px' }}>
-                      <label style={{ fontSize: '12px', fontWeight: '600', color: '#666', display: 'block', marginBottom: '6px' }}>Order Status</label>
-                      <select
-                        className="admin-status-select"
-                        value={statusDraft}
-                        onChange={(e) => setStatusDraft(e.target.value)}
-                        style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd' }}
+                  <div className="info-card">
+                    <div className="card-header">
+                      <FiMapPin /> <h3>Shipping Address</h3>
+                    </div>
+                    <div className="card-body">
+                      <address className="shipping-address-box">
+                        <p className="addr-name">{selectedOrder.shippingAddress?.fullName}</p>
+                        <p>{selectedOrder.shippingAddress?.address}</p>
+                        <p>{selectedOrder.shippingAddress?.city}, {selectedOrder.shippingAddress?.state} {selectedOrder.shippingAddress?.zipCode}</p>
+                      </address>
+                    </div>
+                  </div>
+
+                  {selectedOrder.paymentMethod !== 'cod' && (
+                    <div className="info-card payment-verify-card">
+                      <div className="card-header">
+                        <FiCreditCard /> <h3>Payment Verification</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="payment-meta">
+                          <div className="data-row">
+                            <span>Method</span>
+                            <strong>{selectedOrder.paymentMethod.toUpperCase()}</strong>
+                          </div>
+                          <div className="data-row">
+                            <span>Transaction ID</span>
+                            <strong className="tx-id">{selectedOrder.paymentProof?.transactionId || 'N/A'}</strong>
+                          </div>
+                        </div>
+                        
+                        {selectedOrder.paymentProof?.screenshotUrl && (
+                          <div className="proof-action">
+                            <a href={selectedOrder.paymentProof.screenshotUrl} target="_blank" rel="noreferrer" className="btn-view-proof">
+                              <FiEye /> View Payment Screenshot
+                            </a>
+                          </div>
+                        )}
+
+                        {selectedOrder.paymentStatus === 'pending_verification' && (
+                          <div className="verify-controls">
+                            <button className="btn-approve" onClick={() => handleVerify(selectedOrder._id)}>
+                              <FiCheckCircle /> Verify Payment
+                            </button>
+                            <button className="btn-reject" onClick={() => handleReject(selectedOrder._id)}>
+                              <FiXCircle /> Reject
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Side: Items & Fulfillment */}
+                <div className="details-right">
+                  <div className="info-card items-card">
+                    <div className="card-header">
+                      <FiPackage /> <h3>Order Items</h3>
+                    </div>
+                    <div className="card-body">
+                      <div className="items-scroll-list">
+                        {selectedOrder.orderItems?.map((item, idx) => (
+                          <div key={idx} className="order-item-row">
+                            <div className="item-main-info">
+                              <span className="item-qty">{item.quantity}x</span>
+                              <span className="item-name">{item.name}</span>
+                            </div>
+                            <span className="item-price">Rs.{(item.price * item.quantity).toLocaleString()}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="order-summary-box">
+                        <div className="summary-row">
+                          <span>Subtotal</span>
+                          <span>Rs.{selectedOrder.itemsPrice?.toLocaleString()}</span>
+                        </div>
+                        <div className="summary-row">
+                          <span>Shipping Fee</span>
+                          <span>Rs.{selectedOrder.shippingPrice?.toLocaleString()}</span>
+                        </div>
+                        <div className="summary-row total">
+                          <span>Total Amount</span>
+                          <span>Rs.{selectedOrder.totalPrice?.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="info-card fulfillment-card">
+                    <div className="card-header">
+                      <FiTruck /> <h3>Order Fulfillment</h3>
+                    </div>
+                    <div className="card-body">
+                      <div className="admin-form-group">
+                        <label>Update Order Status</label>
+                        <div className="select-wrapper">
+                          <select
+                            value={statusDraft}
+                            onChange={(e) => setStatusDraft(e.target.value)}
+                          >
+                            {statusOptions.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
+                          </select>
+                          <FiChevronDown className="select-icon" />
+                        </div>
+                      </div>
+                      
+                      <div className="admin-form-group">
+                        <label>Tracking Number / Courier ID</label>
+                        <div className="input-wrapper">
+                          <FiTruck className="input-icon" />
+                          <input 
+                            type="text" 
+                            placeholder="e.g. TCS-123456"
+                            value={trackingDraft}
+                            onChange={(e) => setTrackingDraft(e.target.value)}
+                          />
+                        </div>
+                      </div>
+
+                      <button 
+                        className="btn-update-order" 
+                        onClick={handleStatusUpdate}
+                        disabled={submitting}
                       >
-                        {statusOptions.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
-                      </select>
+                        {submitting ? 'Processing...' : 'Save & Update Order'}
+                        {!submitting && <FiArrowRight />}
+                      </button>
                     </div>
-                    <div className="form-group" style={{ marginBottom: '20px' }}>
-                      <label style={{ fontSize: '12px', fontWeight: '600', color: '#666', display: 'block', marginBottom: '6px' }}>Tracking Number</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter tracking ID..."
-                        value={trackingDraft}
-                        onChange={(e) => setTrackingDraft(e.target.value)}
-                        style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd' }}
-                      />
-                    </div>
-                    <button 
-                      className="btn-primary" 
-                      style={{ width: '100%', padding: '12px', borderRadius: '12px' }}
-                      onClick={handleStatusUpdate}
-                      disabled={submitting}
-                    >
-                      {submitting ? 'Updating...' : 'Update Order'}
-                    </button>
                   </div>
                 </div>
               </div>

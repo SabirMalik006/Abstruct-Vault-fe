@@ -2,6 +2,9 @@ import { FiPackage, FiCalendar, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './OrderCard.css';
 
+const FALLBACK_ORDER_IMAGE =
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg';
+
 const OrderCard = ({ order }) => {
   const getStatusColor = (status) => {
     switch (status) {
@@ -36,10 +39,14 @@ const OrderCard = ({ order }) => {
       <div className="order-card-body">
         <div className="order-items-preview">
           {order.orderItems.slice(0, 3).map((item, idx) => (
-            <img 
-              key={idx} 
-              src={item.image || '/images/placeholder.jpg'} 
-              alt={item.name} 
+            <img
+              key={idx}
+              src={
+                item.image && item.image !== '/images/placeholder.jpg'
+                  ? item.image
+                  : FALLBACK_ORDER_IMAGE
+              }
+              alt={item.name}
               title={item.name}
             />
           ))}
@@ -47,7 +54,7 @@ const OrderCard = ({ order }) => {
             <div className="more-items">+{order.orderItems.length - 3}</div>
           )}
         </div>
-        
+
         <div className="order-summary-group">
           <div className="summary-item">
             <span>Total Amount</span>
@@ -58,12 +65,6 @@ const OrderCard = ({ order }) => {
             <strong>{order.paymentMethod.toUpperCase()}</strong>
           </div>
         </div>
-      </div>
-
-      <div className="order-card-footer">
-        <Link to={`/dashboard/orders/${order._id}`} className="view-details-btn">
-          View Details <FiChevronRight />
-        </Link>
       </div>
     </div>
   );

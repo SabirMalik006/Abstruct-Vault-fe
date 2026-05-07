@@ -322,7 +322,7 @@ export default function Checkout() {
       <header className="checkout-header">
         <div className="container">
           <Link to="/cart" className="back-link"><FiChevronLeft /> Return to Cart</Link>
-          <div className="logo">The Horizon <span>Hub</span></div>
+          <div className="logo">The Abstruct <span>Vault</span></div>
           <div className="secure-badge"><FiLock /> Secure Checkout</div>
         </div>
       </header>
@@ -419,7 +419,7 @@ export default function Checkout() {
                   icon={FiSmartphone}
                   title="EasyPaisa"
                   desc="Transfer to our EasyPaisa account"
-                  accounts={[{ label: 'EasyPaisa', value: '0300-1234567 (Horizon)' }]}
+                  accounts={[{ label: 'EasyPaisa', value: '0300-1234567 (Abstruct Vault)' }]}
                   isSelected={paymentMethod === 'easypaisa'}
                   onSelect={setPaymentMethod}
                   paymentProof={paymentProof}
@@ -436,7 +436,7 @@ export default function Checkout() {
                   icon={FiSmartphone}
                   title="JazzCash"
                   desc="Transfer to our JazzCash account"
-                  accounts={[{ label: 'JazzCash', value: '0300-7654321 (The Horizon Hub)' }]}
+                  accounts={[{ label: 'JazzCash', value: '0300-7654321 (The Abstruct Vault)' }]}
                   isSelected={paymentMethod === 'jazzcash'}
                   onSelect={setPaymentMethod}
                   paymentProof={paymentProof}

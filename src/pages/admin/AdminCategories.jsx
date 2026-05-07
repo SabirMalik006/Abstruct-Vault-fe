@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiPlus, FiEdit2, FiTrash2, FiX, FiAlertTriangle } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiX, FiAlertTriangle, FiTag, FiChevronDown, FiArrowRight, FiGrid, FiList } from 'react-icons/fi';
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../../services/productService';
 import toast from 'react-hot-toast';
 import './AdminCategories.css';
@@ -155,47 +155,64 @@ export default function AdminCategories() {
       {/* Add / Edit Modal */}
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>{editingCategory ? 'Edit Category' : 'Add Category'}</h2>
-              <button className="close-modal" onClick={closeModal}><FiX /></button>
+          <div className="modal-content order-details-modal category-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header premium-header">
+              <div className="header-top">
+                <div className="id-badge">
+                  <FiTag />
+                  <span>{editingCategory ? 'Edit Category' : 'New Category'}</span>
+                </div>
+              </div>
+              <button className="close-modal-btn" onClick={closeModal}><FiX /></button>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Category Name *</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Safety Equipment"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Description</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows="3"
-                  placeholder="Brief description of this category..."
-                />
-              </div>
-              <div className="form-group">
-                <label>Display Order</label>
-                <input
-                  type="number"
-                  value={formData.order}
-                  onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
-                  min="1"
-                />
-              </div>
-              <div className="modal-actions">
-                <button type="button" onClick={closeModal} className="btn-secondary">Cancel</button>
-                <button type="submit" className="btn-primary" disabled={submitting}>
-                  {submitting ? 'Saving...' : editingCategory ? 'Update' : 'Create'}
-                </button>
-              </div>
-            </form>
+
+            <div className="order-details-body">
+              <form onSubmit={handleSubmit} className="admin-premium-form">
+                <div className="info-card">
+                  <div className="card-header">
+                    <FiEdit2 /> <h3>Category Details</h3>
+                  </div>
+                  <div className="card-body">
+                    <div className="admin-form-group">
+                      <label>Category Name *</label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. Safety Gear"
+                        required
+                      />
+                    </div>
+                    <div className="admin-form-group">
+                      <label>Description</label>
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        rows="3"
+                        placeholder="Brief overview of this category..."
+                      />
+                    </div>
+                    <div className="admin-form-group">
+                      <label>Display Priority (Order)</label>
+                      <input
+                        type="number"
+                        value={formData.order}
+                        onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
+                        min="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-actions-premium" style={{ marginTop: '24px' }}>
+                  <button type="button" className="btn-cancel" onClick={closeModal}>Cancel</button>
+                  <button type="submit" className="btn-save" disabled={submitting}>
+                    {submitting ? 'Saving...' : editingCategory ? 'Update Category' : 'Create Category'}
+                    {!submitting && <FiArrowRight />}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}
@@ -208,7 +225,7 @@ export default function AdminCategories() {
               <FiAlertTriangle />
             </div>
             <h3>Delete Category</h3>
-            <p>Are you sure you want to delete <strong>"{categoryToDelete.name}"</strong>? Products under this category will be affected.</p>
+            <p>Are you sure you want to delete <strong>"{categoryToDelete.name}"</strong>? This may affect products assigned to it.</p>
             <div className="confirm-modal-actions">
               <button className="confirm-cancel-btn" onClick={() => setDeleteModalOpen(false)}>
                 Cancel

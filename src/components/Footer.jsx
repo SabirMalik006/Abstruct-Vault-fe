@@ -49,8 +49,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top container">
         <div className="footer-brand">
-          <Link to="/" className="footer-logo">The Horizon <span>Hub</span></Link>
-          <p>Pakistan's trusted destination for premium safety equipment and industrial protection gear. Quality you can trust, safety you can rely on.</p>
+          <Link to="/" className="footer-logo">The Abstruct <span>Vault</span></Link>
+          <p>Pakistan's trusted destination for premium fashion and lifestyle products. Style you can trust, quality you can rely on.</p>
           <div className="social-links">
             <a href="#" aria-label="Instagram"><FiInstagram /></a>
             <a href="#" aria-label="Facebook"><FiFacebook /></a>
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-col">
-          <h4>Horizon Products</h4>
+          <h4>Our Products</h4>
           <ul>
             <li><Link to="/collections/all-bags">Head Protection</Link></li>
             <li><Link to="/collections/best-selling">Eye Protection</Link></li>
@@ -106,7 +106,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom container">
-        <p>© {new Date().getFullYear()} The Horizon Hub. All rights reserved. Made with ♥ in Pakistan</p>
+        <p>© {new Date().getFullYear()} The Abstruct Vault. All rights reserved. Made with ♥ in Pakistan</p>
         <div className="payment-badges">
           <span>COD</span>
           <span>JazzCash</span>
@@ -172,7 +172,7 @@ export default function Footer() {
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-btn" disabled={submitting}>
+              <button type="submit" className="submit-btn btn-green" disabled={submitting}>
                 {submitting ? 'Submitting...' : 'Submit Feedback'}
               </button>
             </form>

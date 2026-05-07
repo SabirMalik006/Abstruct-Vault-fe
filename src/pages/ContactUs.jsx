@@ -64,8 +64,8 @@ export default function ContactUs() {
             <div className="contact-card">
               <div className="contact-icon"><FiMail /></div>
               <h3>Email Us</h3>
-              <p>support@thehorizonhub.com</p>
-              <p>sales@thehorizonhub.com</p>
+              <p>support@theabstructvault.com</p>
+              <p>sales@theabstructvault.com</p>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ContactUs() {
                     required
                   ></textarea>
                 </div>
-                <button type="submit" className="submit-btn" disabled={loading}>
+                <button type="submit" className="submit-btn btn-green" disabled={loading}>
                   {loading ? 'Sending...' : 'Send Message'} <FiSend />
                 </button>
                 {isSubmitted && (

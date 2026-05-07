@@ -5,7 +5,6 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { getProducts, getCategories } from '../services/productService';
 import { getCurrentUser } from '../services/authService';
-import horizonHubLogo from '../assets/helo.jpeg';
 import './Navbar.css';
 
 const navLinks = [
@@ -13,7 +12,11 @@ const navLinks = [
   { label: 'Shop', path: '/collections/all-products' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
+  { label: 'Reviews', path: '/#reviews' },
 ];
+
+const FALLBACK_SEARCH_IMAGE =
+  'https://images.pexels.com/photos/34965713/pexels-photo-34965713.jpeg';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,12 +98,10 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleOutside);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -109,10 +110,21 @@ export default function Navbar() {
     }
   }, [menuOpen]);
 
-  const handleNavClick = () => {
+  const handleNavClick = (path) => {
     setMenuOpen(false);
     setCatDropdownOpen(false);
     setMobileCatOpen(false);
+
+    if (path && path.includes('#')) {
+      const [basePath, hash] = path.split('#');
+      if (location.pathname === basePath || (basePath === '/' && location.pathname === '')) {
+        const element = document.getElementById(hash.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+    }
     window.scrollTo(0, 0);
   };
 
@@ -129,9 +141,9 @@ export default function Navbar() {
         <div className="ann-track">
           {[...Array(6)].map((_, i) => (
             <span key={i}>
-              🛡️ Premium Safety Equipment | Certified Standards | Shop Now! &nbsp;&nbsp;&nbsp;
+              ✨ New Season Collection | Exclusive Designer Styles | Shop Now! &nbsp;&nbsp;&nbsp;
               🚚 Free Delivery on orders above Rs.10,000 &nbsp;&nbsp;&nbsp;
-              ⚡ Industrial Grade Protection for Professionals &nbsp;&nbsp;&nbsp;
+              💎 Premium Quality Fabrics for Modern Lifestyle &nbsp;&nbsp;&nbsp;
             </span>
           ))}
         </div>
@@ -139,13 +151,9 @@ export default function Navbar() {
 
       <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="container nb-container">
-          <Link to="/" className="nb-logo" onClick={handleNavClick}>
+          <Link to="/" className="nb-logo" onClick={() => handleNavClick('/')}>
             <span className="nb-brand">
-              <span className="nb-brand-mark" aria-hidden="true">
-                <img src={horizonHubLogo} alt="" />
-              </span>
-              <span className="nb-brand-byline">by Horizon-Integrated Solutions</span>
-              <span className="sr-only">The Horizon Hub</span>
+              <span className="nb-brand-name">The Abstruct Vault</span>
             </span>
           </Link>
 
@@ -156,37 +164,9 @@ export default function Navbar() {
           <ul className="nb-links">
             {navLinks.map(link => (
               <li key={link.path}>
-                <Link to={link.path} onClick={handleNavClick}>{link.label}</Link>
+                <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
               </li>
             ))}
-            <li className="nav-item-dropdown" ref={catRef}>
-              <button 
-                className={`nav-drop-btn ${catDropdownOpen ? 'active' : ''}`}
-                onMouseEnter={() => setCatDropdownOpen(true)}
-                onClick={() => setCatDropdownOpen(!catDropdownOpen)}
-              >
-                Categories <FiChevronDown />
-              </button>
-              {catDropdownOpen && (
-                <div className="nb-dropdown-card" onMouseLeave={() => setCatDropdownOpen(false)}>
-                  <div className="dropdown-grid">
-                    {categories.length > 0 ? categories.map(cat => (
-                      <Link 
-                        key={cat._id} 
-                        to={`/collections/${cat.slug}`} 
-                        className="dropdown-item"
-                        onClick={handleNavClick}
-                      >
-                        <span className="item-accent"></span>
-                        {cat.name}
-                      </Link>
-                    )) : (
-                      <span className="no-cats">No categories found</span>
-                    )}
-                  </div>
-                </div>
-              )}
-            </li>
           </ul>
 
           <div className="nb-actions">
@@ -200,7 +180,7 @@ export default function Navbar() {
                   <div className="nb-search-box">
                     <input
                       type="text"
-                      placeholder="Search equipment..."
+                      placeholder="Search products..."
                       value={searchQuery}
                       onChange={e => setSearchQuery(e.target.value)}
                       autoFocus
@@ -210,7 +190,14 @@ export default function Navbar() {
                       <ul className="nb-results">
                         {searchResults.map(p => (
                           <li key={p._id} onClick={() => handleSearchSelect(p.slug)}>
-                            <img src={p.images?.[0]?.url || p.image || '/images/placeholder.jpg'} alt={p.name} />
+                            <img
+                              src={
+                                p.images?.[0]?.url ||
+                                (p.image && p.image !== '/images/placeholder.jpg' ? p.image : null) ||
+                                FALLBACK_SEARCH_IMAGE
+                              }
+                              alt={p.name}
+                            />
                             <div>
                               <span className="r-name">{p.name}</span>
                               <span className="r-price">Rs.{p.price?.toLocaleString()}</span>
@@ -254,7 +241,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ── MOBILE MENU OVERLAY ── */}
         <div className={`nb-mobile-menu ${menuOpen ? 'open' : ''}`}>
           <div className="mobile-menu-header">
             <div className="mobile-search-bar">
@@ -272,7 +258,6 @@ export default function Navbar() {
           </div>
 
           <div className="mobile-menu-content">
-
             {searchQuery.length > 2 && (
               <div className="mobile-search-results">
                 {searching ? (
@@ -296,34 +281,16 @@ export default function Navbar() {
             <ul className="mobile-nav-list">
               {navLinks.map(link => (
                 <li key={link.path}>
-                  <Link to={link.path} onClick={handleNavClick}>{link.label}</Link>
+                  <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
                 </li>
               ))}
-              
-              <li className="mobile-dropdown">
-                <button 
-                  className={`mobile-drop-btn ${mobileCatOpen ? 'active' : ''}`}
-                  onClick={() => setMobileCatOpen(!mobileCatOpen)}
-                >
-                  Categories <FiChevronDown className="arrow" />
-                </button>
-                <div className={`mobile-drop-content ${mobileCatOpen ? 'open' : ''}`}>
-                  {categories.map(cat => (
-                    <Link key={cat._id} to={`/collections/${cat.slug}`} onClick={handleNavClick}>
-                      {cat.name}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-              
-              {/* Added Icons to Mobile Menu */}
               <li>
-                <Link to="/pages/wishlist" onClick={handleNavClick} className="mobile-nav-icon-link">
+                <Link to="/pages/wishlist" onClick={() => handleNavClick('/pages/wishlist')} className="mobile-nav-icon-link">
                   <FiHeart /> Wishlist {wishlistCount > 0 && <span className="mob-badge">{wishlistCount}</span>}
                 </Link>
               </li>
               <li>
-                <Link to="/cart" onClick={handleNavClick} className="mobile-nav-icon-link">
+                <Link to="/cart" onClick={() => handleNavClick('/cart')} className="mobile-nav-icon-link">
                   <FiShoppingCart /> Cart {cartCount > 0 && <span className="mob-badge">{cartCount}</span>}
                 </Link>
               </li>
@@ -333,13 +300,13 @@ export default function Navbar() {
               <hr className="mobile-divider" />
               {user ? (
                 <ul className="mobile-user-links">
-                  <li><Link to="/dashboard" onClick={handleNavClick}><FiUser /> My Dashboard</Link></li>
-                  {user.role === 'admin' && <li><Link to="/admin/dashboard" onClick={handleNavClick}><FiPackage /> Admin Panel</Link></li>}
+                  <li><Link to="/dashboard" onClick={() => handleNavClick('/dashboard')}><FiUser /> My Dashboard</Link></li>
+                  {user.role === 'admin' && <li><Link to="/admin/dashboard" onClick={() => handleNavClick('/admin/dashboard')}><FiPackage /> Admin Panel</Link></li>}
                 </ul>
               ) : (
                 <div className="mobile-auth-stack">
-                  <Link to="/login" className="btn-login-ghost" onClick={handleNavClick}>Log In</Link>
-                  <Link to="/register" className="btn-signup-solid" onClick={handleNavClick}>Sign Up</Link>
+                  <Link to="/login" className="btn-login-ghost" onClick={() => handleNavClick('/login')}>Log In</Link>
+                  <Link to="/register" className="btn-signup-solid" onClick={() => handleNavClick('/register')}>Sign Up</Link>
                 </div>
               )}
               

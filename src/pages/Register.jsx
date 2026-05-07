@@ -39,7 +39,7 @@ const Register = () => {
       });
 
       if (response.token) {
-        toast.success('Account created successfully! Welcome to The Horizon Hub.');
+        toast.success('Account created successfully! Welcome to The Abstruct Vault.');
         navigate('/');
       } else {
         toast.error('Registration failed');
@@ -66,11 +66,11 @@ const Register = () => {
           />
           <div className="side-content">
             <Link to="/" className="auth-logo">
-              The Horizon <span>Hub</span>
+              The Abstruct <span>Vault</span>
             </Link>
             <div className="side-text">
-              <h2>Join the Professionals</h2>
-              <p>Create an account to access bulk pricing, track shipments, and secure your industrial operations.</p>
+              <h2>Join the Community</h2>
+              <p>Create an account to access exclusive deals, track your orders, and discover the latest fashion trends.</p>
             </div>
             
             <ul className="benefits-list">
@@ -89,7 +89,7 @@ const Register = () => {
             </ul>
             
             <div className="side-footer">
-              <p>© 2026 The Horizon Hub. All rights reserved.</p>
+              <p>© 2026 The Abstruct Vault. All rights reserved.</p>
             </div>
           </div>
         </div>

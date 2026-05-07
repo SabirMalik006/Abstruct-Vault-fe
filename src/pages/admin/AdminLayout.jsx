@@ -91,7 +91,7 @@ export default function AdminLayout() {
       <div className="admin-nav-header">
         <Link to="/admin/dashboard" className="admin-logo">
           <span className="logo-icon">⛑️</span>
-          <span className="logo-text">Horizon<span>Admin</span></span>
+          <span className="logo-text">Abstruct<span>Admin</span></span>
         </Link>
       </div>
 
@@ -140,7 +140,7 @@ export default function AdminLayout() {
         <div className="mobile-sidebar-header">
           <Link to="/admin/dashboard" className="admin-logo" onClick={() => setMobileMenuOpen(false)}>
             <span className="logo-icon">⛑️</span>
-            <span className="logo-text">Horizon<span>Admin</span></span>
+            <span className="logo-text">Abstruct<span>Admin</span></span>
           </Link>
           <button className="close-mobile" onClick={() => setMobileMenuOpen(false)}>
             <FiX />

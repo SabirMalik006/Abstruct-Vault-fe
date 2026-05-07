@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiPlus, FiEdit2, FiTrash2, FiX, FiSearch, FiAlertTriangle, FiPackage, FiStar, FiImage } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiX, FiSearch, FiAlertTriangle, FiPackage, FiStar, FiImage, FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import { getProducts, createProduct, updateProduct, deleteProduct, getCategories, uploadProductImages, deleteProductImage } from '../../services/productService';
 import toast from 'react-hot-toast';
 import './AdminProducts.css';
@@ -266,169 +266,214 @@ export default function AdminProducts() {
       {/* Product Form Modal */}
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content large" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
-              <button className="close-btn" onClick={closeModal}><FiX /></button>
+          <div className="modal-content large order-details-modal product-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header premium-header">
+              <div className="header-top">
+                <div className="id-badge">
+                  <FiPackage />
+                  <span>{editingProduct ? `Edit: ${editingProduct.name.slice(0, 20)}...` : 'Add New Product'}</span>
+                </div>
+              </div>
+              <button className="close-modal-btn" onClick={closeModal}><FiX /></button>
             </div>
-            <form onSubmit={handleSubmit} className="admin-form">
-              <div className="form-grid">
-                <div className="form-group full">
-                  <label>Product Name *</label>
-                  <input 
-                    type="text" 
-                    value={formData.name} 
-                    onChange={(e) => setFormData({...formData, name: e.target.value})} 
-                    required 
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label>Category *</label>
-                  <select 
-                    value={formData.category} 
-                    onChange={(e) => setFormData({...formData, category: e.target.value})} 
-                    required
-                  >
-                    <option value="">Select Category</option>
-                    {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-                  </select>
-                </div>
 
-                <div className="form-group">
-                  <label>Stock Quantity *</label>
-                  <input 
-                    type="number" 
-                    value={formData.stock} 
-                    onChange={(e) => setFormData({...formData, stock: e.target.value})} 
-                    required 
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Base Price (Rs.) *</label>
-                  <input 
-                    type="number" 
-                    value={formData.price} 
-                    onChange={(e) => setFormData({...formData, price: e.target.value})} 
-                    required 
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Compare Price (Original)</label>
-                  <input 
-                    type="number" 
-                    value={formData.comparePrice} 
-                    onChange={(e) => setFormData({...formData, comparePrice: e.target.value})} 
-                  />
-                </div>
-
-                <div className="form-group full">
-                  <label>Description</label>
-                  <textarea 
-                    value={formData.description} 
-                    onChange={(e) => setFormData({...formData, description: e.target.value})} 
-                    rows="3"
-                  />
-                </div>
-
-                <div className="form-group full">
-                  <label>Product Images</label>
-                  <div className="tags-wrap">
-                    {formData.images.map((img, idx) => (
-                      <div key={idx} className="tag image-tag">
-                        <img src={img.url} alt="" />
-                        <button type="button" onClick={() => handleRemoveImage(img)}>×</button>
+            <div className="order-details-body">
+              <form onSubmit={handleSubmit} className="admin-premium-form">
+                <div className="details-layout">
+                  {/* Left Column: Basic Info & Variations */}
+                  <div className="details-left">
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiEdit2 /> <h3>Basic Details</h3>
                       </div>
-                    ))}
+                      <div className="card-body">
+                        <div className="admin-form-group">
+                          <label>Product Name *</label>
+                          <input 
+                            type="text" 
+                            value={formData.name} 
+                            onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                            placeholder="Enter product title..."
+                            required 
+                          />
+                        </div>
+                        <div className="admin-form-group">
+                          <label>Description</label>
+                          <textarea 
+                            value={formData.description} 
+                            onChange={(e) => setFormData({...formData, description: e.target.value})} 
+                            rows="4"
+                            placeholder="Detailed product description..."
+                          />
+                        </div>
+                        <div className="admin-form-group">
+                          <label>Category *</label>
+                          <div className="select-wrapper">
+                            <select 
+                              value={formData.category} 
+                              onChange={(e) => setFormData({...formData, category: e.target.value})} 
+                              required
+                            >
+                              <option value="">Select Category</option>
+                              {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                            </select>
+                            <FiChevronDown className="select-icon" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiPackage /> <h3>Variations & Options</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="admin-form-group">
+                          <label>Colors</label>
+                          <div className="variations-input-group">
+                            <input 
+                              type="text" 
+                              value={colorInput} 
+                              onChange={(e) => setColorInput(e.target.value)} 
+                              placeholder="e.g. Forest Green" 
+                            />
+                            <button type="button" onClick={() => addItem('colors', colorInput, setColorInput)}>Add</button>
+                          </div>
+                          <div className="variation-tags">
+                            {formData.colors.map(c => (
+                              <span key={c} className="v-tag">
+                                {c} <FiX onClick={() => removeItem('colors', c)} />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="admin-form-group">
+                          <label>Sizes</label>
+                          <div className="variations-input-group">
+                            <input 
+                              type="text" 
+                              value={sizeInput} 
+                              onChange={(e) => setSizeInput(e.target.value)} 
+                              placeholder="e.g. XL or 42" 
+                            />
+                            <button type="button" onClick={() => addItem('sizes', sizeInput, setSizeInput)}>Add</button>
+                          </div>
+                          <div className="variation-tags">
+                            {formData.sizes.map(s => (
+                              <span key={s} className="v-tag">
+                                {s} <FiX onClick={() => removeItem('sizes', s)} />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <div className="image-upload-area">
-                    <input 
-                      type="file" 
-                      multiple 
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      id="product-image-upload"
-                      className="file-input-hidden"
-                      disabled={uploadingImages}
-                    />
-                    <label htmlFor="product-image-upload" className="upload-btn">
-                      <FiImage /> {uploadingImages ? 'Uploading...' : 'Upload Images'}
-                    </label>
-                    <span className="upload-hint">Or paste URL below:</span>
-                    <div className="tag-input-box" style={{marginTop: '0.5rem', width: '100%'}}>
-                      <input 
-                        type="text" 
-                        value={imageInput} 
-                        onChange={(e) => setImageInput(e.target.value)} 
-                        placeholder="Paste image URL..." 
-                      />
-                      <button type="button" onClick={addImage}>Add URL</button>
+
+                  {/* Right Column: Pricing, Stock & Media */}
+                  <div className="details-right">
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiStar /> <h3>Pricing & Inventory</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="form-row-2">
+                          <div className="admin-form-group">
+                            <label>Base Price (Rs.) *</label>
+                            <input 
+                              type="number" 
+                              value={formData.price} 
+                              onChange={(e) => setFormData({...formData, price: e.target.value})} 
+                              required 
+                            />
+                          </div>
+                          <div className="admin-form-group">
+                            <label>Compare Price</label>
+                            <input 
+                              type="number" 
+                              value={formData.comparePrice} 
+                              onChange={(e) => setFormData({...formData, comparePrice: e.target.value})} 
+                            />
+                          </div>
+                        </div>
+                        <div className="admin-form-group">
+                          <label>Inventory Stock *</label>
+                          <input 
+                            type="number" 
+                            value={formData.stock} 
+                            onChange={(e) => setFormData({...formData, stock: e.target.value})} 
+                            required 
+                          />
+                        </div>
+                        <div className="admin-form-group checkbox-group">
+                          <label className="premium-checkbox">
+                            <input 
+                              type="checkbox" 
+                              checked={formData.isFeatured} 
+                              onChange={(e) => setFormData({...formData, isFeatured: e.target.checked})} 
+                            />
+                            <span>Featured Product (Home Page)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="info-card">
+                      <div className="card-header">
+                        <FiImage /> <h3>Product Media</h3>
+                      </div>
+                      <div className="card-body">
+                        <div className="media-preview-grid">
+                          {formData.images.map((img, idx) => (
+                            <div key={idx} className="media-preview-item">
+                              <img src={img.url} alt="" />
+                              <button type="button" onClick={() => handleRemoveImage(img)} className="remove-media"><FiX /></button>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <div className="media-upload-controls">
+                          <input 
+                            type="file" 
+                            multiple 
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            id="product-image-upload"
+                            className="file-input-hidden"
+                            disabled={uploadingImages}
+                          />
+                          <label htmlFor="product-image-upload" className="premium-upload-btn">
+                            <FiPlus /> {uploadingImages ? 'Uploading...' : 'Upload Images'}
+                          </label>
+                          
+                          <div className="url-input-alt">
+                            <span>OR paste URL</span>
+                            <div className="url-input-group">
+                              <input 
+                                type="text" 
+                                value={imageInput} 
+                                onChange={(e) => setImageInput(e.target.value)} 
+                                placeholder="https://..." 
+                              />
+                              <button type="button" onClick={addImage}>Add</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="form-actions-premium">
+                      <button type="button" className="btn-cancel" onClick={closeModal}>Cancel</button>
+                      <button type="submit" className="btn-save" disabled={submitting}>
+                        {submitting ? 'Saving...' : 'Save Product Data'}
+                        {!submitting && <FiArrowRight />}
+                      </button>
                     </div>
                   </div>
                 </div>
-
-                <div className="form-group">
-                  <label>Colors</label>
-                  <div className="tags-wrap">
-                    {formData.colors.map(c => (
-                      <span key={c} className="tag">
-                        {c} <button type="button" onClick={() => removeItem('colors', c)}>×</button>
-                      </span>
-                    ))}
-                    <div className="tag-input-box">
-                      <input 
-                        type="text" 
-                        value={colorInput} 
-                        onChange={(e) => setColorInput(e.target.value)} 
-                        placeholder="Add color..." 
-                      />
-                      <button type="button" onClick={() => addItem('colors', colorInput, setColorInput)}>Add</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label>Sizes</label>
-                  <div className="tags-wrap">
-                    {formData.sizes.map(s => (
-                      <span key={s} className="tag">
-                        {s} <button type="button" onClick={() => removeItem('sizes', s)}>×</button>
-                      </span>
-                    ))}
-                    <div className="tag-input-box">
-                      <input 
-                        type="text" 
-                        value={sizeInput} 
-                        onChange={(e) => setSizeInput(e.target.value)} 
-                        placeholder="Add size (e.g. XL, 42)..." 
-                      />
-                      <button type="button" onClick={() => addItem('sizes', sizeInput, setSizeInput)}>Add</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group full checkbox">
-                  <label className="checkbox-label">
-                    <input 
-                      type="checkbox" 
-                      checked={formData.isFeatured} 
-                      onChange={(e) => setFormData({...formData, isFeatured: e.target.checked})} 
-                    />
-                    <span>Mark as Featured Product (Shows on Home Page)</span>
-                  </label>
-                </div>
-              </div>
-
-              <div className="modal-actions">
-                <button type="button" className="btn-secondary" onClick={closeModal}>Cancel</button>
-                <button type="submit" className="btn-primary" disabled={submitting}>
-                  {submitting ? 'Saving...' : 'Save Product'}
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       )}
