@@ -57,7 +57,7 @@ const DashboardProfile = ({ user, onUpdate }) => {
                 type="text" 
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                placeholder="e.g. +92 300 1234567"
+                placeholder="e.g. +92 3215366666"
               />
             </div>
           </div>

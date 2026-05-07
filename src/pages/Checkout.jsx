@@ -368,7 +368,7 @@ export default function Checkout() {
                 </div>
                 <div className={`form-group ${errors.phone ? 'error' : ''}`}>
                   <label>Phone Number</label>
-                  <input name="phone" value={formData.phone} onChange={handleChange} placeholder="+92 300 1234567" />
+                  <input name="phone" value={formData.phone} onChange={handleChange} placeholder="+92 3215366666" />
                   {errors.phone && <span className="error-text">{errors.phone}</span>}
                 </div>
                 <div className={`form-group ${errors.address ? 'error' : ''} full`}>
