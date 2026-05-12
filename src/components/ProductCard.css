@@ -69,7 +69,7 @@
 }
 
 .badge-discount {
-  background: #e11d48; /* Premium Red */
+  background: #0057FF; /* Electric Blue */
   color: white;
   left: auto;
   right: 12px;
@@ -123,11 +123,11 @@
 
 /* Info Section */
 .product-info {
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 0.75rem; /* Reduced bottom padding */
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center everything */
+  align-items: center;
   text-align: center;
 }
 
@@ -189,23 +189,23 @@
 .product-footer {
   margin-top: auto;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Stacked for centering */
   align-items: center;
   width: 100%;
   padding-top: 1rem;
-  border-top: 1px solid #f3f4f6;
 }
 
 .product-pricing {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center; /* Centered */
+  width: 100%;
 }
 
 .price-sale {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #111827;
+  color: #194933; /* Brand Green */
 }
 
 .price-original {
@@ -214,28 +214,36 @@
   text-decoration: line-through;
 }
 
-.btn-add-cart-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #f3f4f6;
+.btn-add-to-cart-full {
+  width: calc(100% - 2rem);
+  margin: 1rem 1rem 0.5rem; /* Reduced bottom margin */
+  padding: 11px 0;
+  background: #194933;
+  color: white;
   border: none;
-  color: #111827;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.btn-add-cart-icon:hover:not(:disabled) {
-  background: #194933;
-  color: #ffffff;
+.btn-add-to-cart-full:hover:not(:disabled) {
+  background: #123325;
+  box-shadow: 0 4px 15px rgba(25, 73, 51, 0.2);
   transform: translateY(-2px);
 }
 
-.btn-add-cart-icon.disabled {
-  opacity: 0.5;
+.btn-add-to-cart-full.disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
   cursor: not-allowed;
+}
+
+.btn-add-to-cart-full svg {
+  font-size: 1.1rem;
 }

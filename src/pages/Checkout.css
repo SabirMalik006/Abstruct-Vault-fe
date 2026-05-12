@@ -33,7 +33,7 @@
   color: #0f172a;
 }
 
-.logo span { color: #c4a47a; }
+.logo span { color: #194933; }
 
 .secure-badge {
   display: flex;
@@ -580,4 +580,15 @@
   justify-content: center;
   margin-top: 3rem;
   width: 100%;
+}
+.checkout-notes {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.checkout-notes textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
 }

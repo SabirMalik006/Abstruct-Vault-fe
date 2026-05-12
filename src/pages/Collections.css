@@ -59,7 +59,7 @@
 
 .view-toggles button.active {
   background: white;
-  color: #c4a47a;
+  color: #194933;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
@@ -128,7 +128,7 @@
 .product-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: #c4a47a;
+  border-color: #194933;
 }
 
 .card-image-wrap {
@@ -152,7 +152,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: #ef4444;
+  background: #0057FF; /* Electric Blue */
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
@@ -202,7 +202,11 @@
 }
 
 .card-info {
-  padding: 1.5rem;
+  padding: 1.25rem;
+  text-align: center; /* Center all text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-category {
@@ -227,41 +231,22 @@
 }
 
 .card-title a:hover {
-  color: #c4a47a;
+  color: #194933;
 }
 
-.card-rating {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin-bottom: 0.75rem;
-}
 
-.card-rating svg {
-  color: #e2e8f0;
-  font-size: 0.9rem;
-}
-
-.card-rating svg.filled {
-  color: #fbbf24;
-}
-
-.card-rating span {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  margin-left: 0.25rem;
-}
 
 .card-price {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center price */
   gap: 0.75rem;
 }
 
 .current-price {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #c4a47a;
+  color: #194933;
 }
 
 .old-price {
@@ -304,23 +289,45 @@
   margin-bottom: 1.5rem;
 }
 
-.btn-add-cart {
-  width: fit-content;
-  padding: 0.75rem 1.5rem;
+.btn-add-to-cart-full {
+  width: 100%;
+  margin: 1rem 0 0.5rem; /* Centered and reduced bottom gap */
+  padding: 11px 0;
   background: #194933;
   color: white;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 10px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
-.btn-add-cart:hover {
+.btn-add-to-cart-full:hover:not(:disabled) {
   background: #123325;
+  box-shadow: 0 4px 15px rgba(25, 73, 51, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-add-to-cart-full.disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.btn-add-to-cart-full svg {
+  font-size: 1.1rem;
+}
+
+/* List Mode Button */
+.product-card.list .btn-add-to-cart-full {
+  width: fit-content;
+  padding: 10px 30px;
+  margin-top: 1rem;
 }
 
 /* Empty State */

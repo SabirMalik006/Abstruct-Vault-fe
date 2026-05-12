@@ -24,13 +24,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       const response = await login(formData.email, formData.password);
-      
+
       if (response.token) {
         toast.success('Welcome back to The Abstruct Vault!');
-        
+
         // Redirect based on role
         if (response.user?.role === 'admin') {
           navigate('/admin/dashboard');
@@ -55,11 +55,11 @@ const Login = () => {
         {/* Left Side: Brand Info */}
         <div className="auth-side-panel">
           <div className="side-overlay"></div>
-          <img 
+          {/* <img 
             src="/safety_login_side_1777667349463.png" 
             alt="Safety Gear" 
             className="side-bg-image" 
-          />
+          /> */}
           <div className="side-content">
             <Link to="/" className="auth-logo">
               The Abstruct <span>Vault</span>
@@ -68,22 +68,22 @@ const Login = () => {
               <h2>Elevate Your Style</h2>
               <p>Join thousands of fashion lovers who trust The Abstruct Vault for premium clothing and lifestyle products.</p>
             </div>
-            
+
             <ul className="benefits-list">
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Enterprise-grade safety standards</span>
+                <span>Curated designer collections for girls</span>
               </li>
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Next-day delivery across Pakistan</span>
+                <span>Premium quality & exclusive designs</span>
               </li>
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Bulk wholesale pricing for businesses</span>
+                <span>Fast & secure delivery across Pakistan</span>
               </li>
             </ul>
-            
+
             <div className="side-footer">
               <p>© 2026 The Abstruct Vault. All rights reserved.</p>
             </div>

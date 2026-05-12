@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary: #FFB300;
+  --primary: #111827; /* Changed from yellow to black */
   --secondary: #1B2631;
   --accent: #FF5722;
   --bg-light: #F8F9F9;
@@ -47,9 +47,13 @@ img {
 }
 
 .container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 85px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
 }
 
 .section-title {
@@ -78,7 +82,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: #194933;
   border-radius: 10px;
 }
 

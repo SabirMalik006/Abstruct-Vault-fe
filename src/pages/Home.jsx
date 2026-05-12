@@ -105,8 +105,8 @@ export default function Home() {
               rating: product.rating || 4.5, // fallback for UI
               reviewCount: product.numReviews || 12, // fallback for UI
               colors: product.colors || [],
-              discount: product.comparePrice > product.price 
-                ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100) 
+              discount: product.comparePrice > product.price
+                ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
                 : 0
             }));
           setBestSellers(formattedProducts);
@@ -179,8 +179,8 @@ export default function Home() {
           <div style={{
             width: '50px',
             height: '50px',
-            border: '4px solid rgba(245, 158, 11, 0.2)',
-            borderTopColor: 'var(--hero-accent)',
+            border: '4px solid rgba(25, 73, 51, 0.1)',
+            borderTopColor: '#194933',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite'
           }}></div>
@@ -279,7 +279,7 @@ export default function Home() {
             <h2 className="section-title">Shop By Category</h2>
             <p className="section-subtitle">Your safety, our priority — explore our premium protection gear</p>
             <div className="categories-grid">
-              {categories.map(cat => (
+              {categories.slice(0, 4).map(cat => (
                 <Link key={cat.id} to={`/collections/${cat.slug}`} className="cat-card">
                   <div className="cat-image">
                     <img src={cat.image || FALLBACK_PRODUCT_IMAGES[0]} alt={cat.name} />
@@ -319,21 +319,8 @@ export default function Home() {
               <span className="promo-tag">Limited Time Offer</span>
               <h2>Season End Sale — Up to 20% Off!</h2>
               <p>Grab your favourite styles before they're gone. Elevate your wardrobe with our premium collection of curated fashion pieces.</p>
-              
-              <div className="promo-features">
-                <div className="p-feat">
-                  <FiTruck />
-                  <span>Free Delivery Over Rs.10,000</span>
-                </div>
-                <div className="p-feat">
-                  <FiShield />
-                  <span>100% Premium Quality</span>
-                </div>
-                <div className="p-feat">
-                  <FiRefreshCw />
-                  <span>Easy 7-Day Returns</span>
-                </div>
-              </div>
+
+
 
               <Link to="/collections/all-products" className="hero-btn">Shop the Sale <FiArrowRight /></Link>
             </div>
@@ -378,7 +365,7 @@ export default function Home() {
         </section>
 
         {/* ── INSTAGRAM ── */}
-        <section className="instagram-section">
+        {/* <section className="instagram-section">
           <div className="container" style={{ textAlign: 'center' }}>
             <p className="section-tag">Follow Us</p>
             <h2 className="section-title">@AbstructVault.pk</h2>
@@ -399,7 +386,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
       </div>
     </>

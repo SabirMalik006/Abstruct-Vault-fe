@@ -134,24 +134,7 @@ export default function ProductCard({ product }) {
           <Link to={`/products/${productSlug}`}>{productName}</Link>
         </h3>
 
-        {productColors.length > 0 && (
-          <div className="color-swatches">
-            {productColors.slice(0, 5).map(color => (
-              <button
-                key={typeof color === 'string' ? color : color.name}
-                className={`swatch ${selectedColor === (typeof color === 'string' ? color : color.name) ? 'active' : ''}`}
-                style={{ background: colorMap[typeof color === 'string' ? color : color.name] || '#ccc' }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setSelectedColor(typeof color === 'string' ? color : color.name);
-                }}
-                title={typeof color === 'string' ? color : color.name}
-              />
-            ))}
-            {productColors.length > 5 && <span className="swatch-more">+{productColors.length - 5}</span>}
-          </div>
-        )}
+
 
         <div className="product-footer">
           <div className="product-pricing">
@@ -160,10 +143,19 @@ export default function ProductCard({ product }) {
               <span className="price-original">Rs.{product.originalPrice.toLocaleString()}</span>
             )}
           </div>
-          <button className={`btn-add-cart-icon ${!inStock ? 'disabled' : ''}`} onClick={handleAddToCart} disabled={!inStock} title={inStock ? 'Add to Cart' : 'Out of Stock'}>
-            <FiShoppingCart />
-          </button>
         </div>
+        
+        <button 
+          className={`btn-add-to-cart-full ${!inStock ? 'disabled' : ''}`} 
+          onClick={handleAddToCart} 
+          disabled={!inStock}
+        >
+          {inStock ? (
+            <>Add to Cart <FiShoppingCart /></>
+          ) : (
+            'Out of Stock'
+          )}
+        </button>
       </div>
     </div>
   );

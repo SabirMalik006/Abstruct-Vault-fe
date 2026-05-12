@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
-import { FiGrid, FiList, FiFilter, FiChevronDown, FiSearch, FiShoppingCart, FiHeart, FiStar } from 'react-icons/fi';
+import { FiGrid, FiList, FiFilter, FiChevronDown, FiSearch, FiShoppingCart, FiHeart, FiStar, FiEye } from 'react-icons/fi';
 import { getProducts, getCategories } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
@@ -28,8 +28,6 @@ const Collections = () => {
   // Filter States
   const initialCategory = slug && slug !== 'all-products' && slug !== 'all' ? slug : (searchParams.get('category') || 'all');
   const [activeCategory, setActiveCategory] = useState(initialCategory);
-  const [priceRange, setPriceRange] = useState([0, 100000]);
-  const [activeColor, setActiveColor] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
   const { addToCart } = useCart();
@@ -45,7 +43,7 @@ const Collections = () => {
 
   useEffect(() => {
     fetchData();
-  }, [activeCategory, sortOption, priceRange, activeColor]);
+  }, [activeCategory, sortOption]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -53,9 +51,6 @@ const Collections = () => {
       const filters = {
         category: activeCategory !== 'all' ? activeCategory : undefined,
         sort: sortOption,
-        minPrice: priceRange[0],
-        maxPrice: priceRange[1],
-        color: activeColor || undefined,
         search: searchTerm || undefined
       };
       
@@ -135,10 +130,6 @@ const Collections = () => {
             categories={categories}
             activeCategory={activeCategory}
             onCategoryChange={setActiveCategory}
-            priceRange={priceRange}
-            onPriceChange={setPriceRange}
-            activeColor={activeColor}
-            onColorChange={setActiveColor}
             isOpen={sidebarOpen}
             onClose={() => setSidebarOpen(false)}
           />
@@ -153,8 +144,6 @@ const Collections = () => {
                 <p>Try adjusting your filters or search terms.</p>
                 <button className="btn-primary" onClick={() => {
                   setActiveCategory('all');
-                  setPriceRange([0, 100000]);
-                  setActiveColor(null);
                   setSearchTerm('');
                 }}>Clear All Filters</button>
               </div>
@@ -197,14 +186,32 @@ const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted 
         <div className="card-actions">
           <button 
             className={`action-btn ${isWishlisted ? 'active' : ''}`}
-            onClick={() => onWishlist(product)}
+            onClick={(e) => {
+              e.preventDefault();
+              onWishlist(product);
+            }}
             title="Add to Wishlist"
           >
             <FiHeart />
           </button>
-          <button className="action-btn" onClick={() => onAddToCart(product)} title="Quick Add">
+          <button 
+            className="action-btn" 
+            onClick={(e) => {
+              e.preventDefault();
+              onAddToCart(product);
+            }} 
+            title="Quick Add"
+          >
             <FiShoppingCart />
           </button>
+          <a 
+            href={`/products/${product.slug}`} 
+            className="action-btn" 
+            title="View Product"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <FiEye />
+          </a>
         </div>
       </div>
       
@@ -213,18 +220,28 @@ const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted 
         <h3 className="card-title">
           <a href={`/products/${product.slug}`}>{product.name}</a>
         </h3>
-        <div className="card-rating">
-          {[...Array(5)].map((_, i) => (
-            <FiStar key={i} className={i < Math.floor(product.rating || 0) ? 'filled' : ''} />
-          ))}
-          <span>({product.numReviews || 0})</span>
-        </div>
+
         <div className="card-price">
           <span className="current-price">Rs.{product.price?.toLocaleString()}</span>
           {product.comparePrice > product.price && (
             <span className="old-price">Rs.{product.comparePrice?.toLocaleString()}</span>
           )}
         </div>
+        
+        <button 
+          className={`btn-add-to-cart-full ${product.stock <= 0 ? 'disabled' : ''}`}
+          onClick={(e) => {
+            e.preventDefault();
+            onAddToCart(product);
+          }}
+          disabled={product.stock <= 0}
+        >
+          {product.stock > 0 ? (
+            <>Add to Cart <FiShoppingCart /></>
+          ) : (
+            'Out of Stock'
+          )}
+        </button>
         
         {viewMode === 'list' && (
           <div className="list-description">

@@ -6,7 +6,7 @@ export const products = [
     price: 12999,
     originalPrice: 15000,
     discount: 13,
-    category: "fashion",
+    category: "apparel",
     colors: ["Black", "Brown"],
     images: [
       "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg",
@@ -23,7 +23,7 @@ export const products = [
     price: 8499,
     originalPrice: 9999,
     discount: 15,
-    category: "fashion",
+    category: "bags",
     colors: ["Tan", "Black", "Beige"],
     images: [
       "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg",
@@ -40,7 +40,7 @@ export const products = [
     price: 5999,
     originalPrice: 7500,
     discount: 20,
-    category: "fashion",
+    category: "accessories",
     colors: ["Silver", "Gold", "Black"],
     images: [
       "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg",
@@ -57,7 +57,7 @@ export const products = [
     price: 4599,
     originalPrice: 5500,
     discount: 16,
-    category: "fashion",
+    category: "footwears",
     colors: ["White", "Black", "Red"],
     images: [
       "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg",
@@ -74,7 +74,7 @@ export const products = [
     price: 9799,
     originalPrice: 11000,
     discount: 11,
-    category: "fashion",
+    category: "apparel",
     colors: ["Beige", "Grey", "Black"],
     images: [
       "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg",
@@ -91,7 +91,7 @@ export const products = [
     price: 2299,
     originalPrice: 2900,
     discount: 21,
-    category: "fashion",
+    category: "accessories",
     colors: ["Red", "Navy", "Floral"],
     images: [
       "https://images.pexels.com/photos/375880/pexels-photo-375880.jpeg",
@@ -108,7 +108,7 @@ export const products = [
     price: 3899,
     originalPrice: 4500,
     discount: 13,
-    category: "fashion",
+    category: "apparel",
     colors: ["Dark Blue", "Light Blue", "Black"],
     images: [
       "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg",
@@ -125,7 +125,7 @@ export const products = [
     price: 1999,
     originalPrice: 2500,
     discount: 20,
-    category: "fashion",
+    category: "accessories",
     colors: ["Gold", "Black", "Silver"],
     images: [
       "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
@@ -142,7 +142,7 @@ export const products = [
     price: 4999,
     originalPrice: 6500,
     discount: 23,
-    category: "fashion",
+    category: "apparel",
     colors: ["Grey", "Black", "Navy"],
     images: [
       "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg",
@@ -174,82 +174,88 @@ export const products = [
 export const categories = [
   {
     id: 1,
-    name: "Premium Clothes",
-    slug: "premium-clothes",
-    image: "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg",
+    name: "Apparel",
+    slug: "apparel",
+    image: "https://images.pexels.com/photos/33313394/pexels-photo-33313394.jpeg",
   },
   {
     id: 2,
-    name: "Luxury Bags",
-    slug: "luxury-bags",
-    image: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg",
+    name: "Accessories",
+    slug: "accessories",
+    image: "https://images.pexels.com/photos/32203040/pexels-photo-32203040.jpeg",
   },
   {
     id: 3,
-    name: "Designer Watches",
-    slug: "designer-watches",
-    image: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg",
+    name: "Footwears",
+    slug: "footwears",
+    image: "https://images.pexels.com/photos/20526389/pexels-photo-20526389.jpeg",
   },
   {
     id: 4,
-    name: "Urban Footwear",
-    slug: "urban-footwear",
-    image: "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg",
+    name: "Jewellery",
+    slug: "jewellery",
+    image: "https://images.pexels.com/photos/9327168/pexels-photo-9327168.jpeg",
+  },
+  {
+    id: 5,
+    name: "Bags",
+    slug: "bags",
+    image: "https://images.pexels.com/photos/7742501/pexels-photo-7742501.jpeg",
   },
 ];
 
 export const reviews = [
-  { 
-    id: 1, 
-    name: "Irfan Ahmed", 
-    rating: 5, 
-    comment: "The leather jacket is absolutely stunning! The fit is perfect and the quality is premium. Definitely worth it.", 
-    location: "Lahore", 
+  {
+    id: 1,
+    name: "Irfan Ahmed",
+    rating: 5,
+    comment: "The leather jacket is absolutely stunning! The fit is perfect and the quality is premium. Definitely worth it.",
+    location: "Lahore",
     date: "2 days ago",
     image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
   },
-  { 
-    id: 2, 
-    name: "Sajid Khan", 
-    rating: 5, 
-    comment: "Found my new favorite fashion store. The minimalist collection is exactly what I was looking for. Highly recommend!", 
-    location: "Karachi", 
+  {
+    id: 2,
+    name: "Sajid Khan",
+    rating: 5,
+    comment: "Found my new favorite fashion store. The minimalist collection is exactly what I was looking for. Highly recommend!",
+    location: "Karachi",
     date: "1 week ago",
     image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg"
   },
-  { 
-    id: 3, 
-    name: "Ahsan Raza", 
-    rating: 5, 
-    comment: "The designer watch I ordered is even better in person. Sleek design and high-quality build. Will buy again.", 
-    location: "Islamabad", 
+  {
+    id: 3,
+    name: "Ahsan Raza",
+    rating: 5,
+    comment: "The designer watch I ordered is even better in person. Sleek design and high-quality build. Will buy again.",
+    location: "Islamabad",
     date: "2 weeks ago",
     image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
   },
-  { 
-    id: 4, 
-    name: "Umer Malik", 
-    rating: 5, 
-    comment: "The Abstract Vault has the best curated collection in Pakistan. Exceptional quality and fast delivery!", 
-    location: "Rawalpindi", 
+  {
+    id: 4,
+    name: "Umer Malik",
+    rating: 5,
+    comment: "The Abstract Vault has the best curated collection in Pakistan. Exceptional quality and fast delivery!",
+    location: "Rawalpindi",
     date: "3 weeks ago",
     image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg"
   },
-  { 
-    id: 5, 
-    name: "Zainab Ali", 
-    rating: 5, 
-    comment: "The urban footwear is so comfortable and stylish. Perfect for daily wear. Great service as always.", 
-    location: "Faisalabad", 
+  {
+    id: 5,
+    name: "Zainab Ali",
+    rating: 5,
+    comment: "The urban footwear is so comfortable and stylish. Perfect for daily wear. Great service as always.",
+    location: "Faisalabad",
     date: "1 month ago",
     image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg"
   },
-  { 
-    id: 6, 
-    name: "Hassan Baig", 
-    rating: 5, 
-    comment: "Exquisite designs and premium fabrics. I love the attention to detail in every piece. My go-to store now.", 
-    location: "Multan", 
+  {
+    id: 6,
+    name: "Hassan Baig",
+    rating: 5,
+    comment: "Exquisite designs and premium fabrics. I love the attention to detail in every piece. My go-to store now.",
+    location: "Multan",
     date: "1 month ago",
     image: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
   },

@@ -38,8 +38,31 @@ export const getProductsByCategory = async (categoryId) => {
 
 // ✅ Get all categories
 export const getCategories = async () => {
-  const response = await api.get('/categories');
-  return response.data;
+  const FASHION_CATEGORIES = [
+    { _id: 'apparel', name: 'Apparel', slug: 'apparel' },
+    { _id: 'accessories', name: 'Accessories', slug: 'accessories' },
+    { _id: 'footwears', name: 'Footwears', slug: 'footwears' },
+    { _id: 'jewellery', name: 'Jewellery', slug: 'jewellery' },
+    { _id: 'bags', name: 'Bags', slug: 'bags' }
+  ];
+
+  try {
+    const response = await api.get('/categories');
+    if (response.data && response.data.success && response.data.data.length > 0) {
+      // Filter out old industrial/safety categories if they still exist in DB
+      const filtered = response.data.data.filter(cat => 
+        !['premium-clothes', 'luxury-bags', 'designer-watches', 'urban-footwear', 'safety', 'tools', 'industrial'].includes(cat.slug)
+      );
+      
+      // If after filtering we have categories, return them (merged with fashion defaults if missing)
+      if (filtered.length > 0) {
+        return { success: true, data: filtered };
+      }
+    }
+    return { success: true, data: FASHION_CATEGORIES };
+  } catch (error) {
+    return { success: true, data: FASHION_CATEGORIES };
+  }
 };
 
 // ✅ Create category (admin)

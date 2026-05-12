@@ -4,53 +4,18 @@
 :root {
   --navbar-bg: #f4efe7;
   --navbar-bg-scrolled: #FAF7F2;
-  --navbar-text-main: #111827; /* gray-900 */
-  --navbar-text-muted: #4b5563; /* gray-600 */
-  --navbar-accent: #194933; /* primary green */
+  --navbar-text-main: #111827;
+  /* gray-900 */
+  --navbar-text-muted: #4b5563;
+  /* gray-600 */
+  --navbar-accent: #194933;
+  /* primary green */
   --navbar-accent-dark: #123325;
   --navbar-border: rgba(17, 24, 39, 0.08);
 
   /* Header Heights */
-  --ann-height: 36px;
   --nav-height: 70px;
-  --header-height: calc(var(--ann-height) + var(--nav-height));
-}
-
-/* ═══════════════════════════════════════════════════
-   ANNOUNCEMENT BAR
-   ═══════════════════════════════════════════════════ */
-.ann-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1001;
-  height: var(--ann-height);
-  background: #4a3728; /* Brown type color */
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(196, 164, 122, 0.2);
-}
-
-.ann-track {
-  display: flex;
-  white-space: nowrap;
-  animation: marquee 30s linear infinite;
-}
-
-.ann-track span {
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-  padding-right: 4rem;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  --header-height: var(--nav-height);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -58,7 +23,7 @@
    ═══════════════════════════════════════════════════ */
 .navbar {
   position: fixed;
-  top: var(--ann-height);
+  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -77,7 +42,7 @@
   background: var(--navbar-bg);
   top: 0 !important;
   height: 70px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nb-container {
@@ -99,6 +64,19 @@
   display: flex;
   align-items: center;
   height: 100%;
+  gap: 12px;
+}
+
+.nb-logo-img {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.nb-logo:hover .nb-logo-img {
+  transform: scale(1.05);
 }
 
 .nb-brand {
@@ -187,19 +165,36 @@
   top: 100%;
   left: -20px;
   width: 320px;
-  background: #ffffff;
+  background: #194933;
+  /* Dark Green */
   border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   padding: 12px 0;
   z-index: 2000;
-  animation: dropFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(0,0,0,0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 5px;
 }
 
+.nav-item-dropdown:hover .nb-dropdown-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 @keyframes dropFade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dropdown-grid {
@@ -213,7 +208,8 @@
   position: relative;
   padding: 12px 18px;
   font-size: 0.9rem;
-  color: #333333 !important;
+  color: #ffffff !important;
+  /* White text on dark green */
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -229,15 +225,17 @@
   top: 25%;
   height: 50%;
   width: 3px;
-  background: var(--navbar-accent);
+  background: #ffffff;
+  /* White accent on dark background */
   border-radius: 0 4px 4px 0;
   opacity: 0;
   transition: all 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background: #f9f3eb; /* Light Gold */
-  color: var(--navbar-accent) !important;
+  background: rgba(255, 255, 255, 0.1);
+  /* Light white hover effect */
+  color: #ffffff !important;
   padding-left: 24px;
 }
 
@@ -318,7 +316,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--navbar-text-main);
+  color: var(--navbar-accent);
   text-decoration: none;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -366,7 +364,7 @@
   display: none;
   background: none;
   border: none;
-  color: var(--navbar-text-main);
+  color: var(--navbar-accent);
   cursor: pointer;
   padding: 0.5rem;
   z-index: 2001;
@@ -381,7 +379,8 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: #111827;
+  background: var(--navbar-bg);
+  /* Match Navbar Background */
   z-index: 2000;
   display: flex;
   flex-direction: column;
@@ -397,13 +396,14 @@
 }
 
 .mobile-menu-header {
-  padding: 3.5rem 1.5rem 1rem; /* Added top spacing to clear marquee */
+  padding: 0.6rem 1rem 0.4rem;
+  /* Adjusted top spacing after removing marquee */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  background: #111827;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: var(--navbar-bg);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -418,28 +418,32 @@
 
 .mobile-search-bar input {
   width: 100%;
-  padding: 10px 10px 10px 35px;
-  background: rgba(31,41,55,0.9);
-  border: 1px solid rgba(55,65,81,0.9);
+  padding: 6px 10px 6px 35px;
+  /* Even smaller vertical padding */
+  background: #ffffff;
+  /* Clear white background */
+  border: 1px solid #111827;
+  /* Dark/Black border */
   border-radius: 8px;
-  color: #fff;
+  color: var(--navbar-text-main);
   font-size: 14px;
 }
 
 .mobile-search-bar svg {
   position: absolute;
   left: 12px;
-  color: rgba(255,255,255,0.5);
+  color: var(--navbar-accent);
 }
 
 .mobile-close {
-  background: rgba(31,41,55,0.9);
+  background: rgba(25, 73, 51, 0.05);
   border: none;
-  color: #fff;
+  color: var(--navbar-accent);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 32px;
+  /* Smaller close button */
+  height: 32px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,7 +451,7 @@
 }
 
 .mobile-close:hover {
-  background: rgba(55,65,81,1);
+  background: rgba(55, 65, 81, 1);
 }
 
 .mobile-menu-content {
@@ -465,10 +469,10 @@
 .mobile-nav-list li a,
 .mobile-drop-btn {
   display: block;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #e5e7eb;
+  color: var(--navbar-text-main);
   text-decoration: none;
   width: 100%;
   text-align: left;
@@ -496,7 +500,8 @@
 }
 
 .mobile-drop-content {
-  background: rgba(255,255,255,0.05);
+  background: #194933;
+  /* Dark Green to match desktop */
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -507,10 +512,10 @@
 }
 
 .mobile-drop-content a {
-  padding: 1rem 3.5rem !important;
+  padding: 0.7rem 3.5rem !important;
   font-size: 1rem !important;
   font-weight: 500 !important;
-  color: rgba(255,255,255,0.7) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   border: none !important;
 }
 
@@ -520,7 +525,7 @@
 
 .mobile-divider {
   border: none;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   margin: 2rem;
 }
 
@@ -534,7 +539,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: #fff;
+  color: var(--navbar-text-main);
   text-decoration: none;
   padding: 0.8rem 0;
   font-size: 1.1rem;
@@ -556,19 +561,45 @@
 }
 
 .mobile-contact-info {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
+  /* Moved up as requested */
   padding: 0 2rem;
-  color: rgba(255,255,255,0.5);
+  color: var(--navbar-text-muted);
   font-size: 0.9rem;
 }
 
 .mobile-contact-info a {
-  display: block;
-  margin-top: 0.5rem;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center since it's in a centered footer area usually */
+  margin-top: 1.2rem;
+  /* More gap between "Need Help?" and the number */
+  color: var(--navbar-accent);
   font-weight: 700;
   font-size: 1.2rem;
   text-decoration: none;
+  text-shadow: 0 0 12px rgba(25, 73, 51, 0.3);
+  animation: phoneGlow 1.5s ease-in-out infinite alternate;
+}
+
+.mobile-contact-info a svg {
+  margin-right: 10px;
+  filter: drop-shadow(0 0 5px rgba(25, 73, 51, 0.3));
+}
+
+@keyframes phoneGlow {
+  from {
+    text-shadow: 0 0 5px rgba(25, 73, 51, 0.1), 0 0 10px rgba(25, 73, 51, 0.05);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  to {
+    text-shadow: 0 0 15px rgba(25, 73, 51, 0.4), 0 0 30px rgba(25, 73, 51, 0.2);
+    transform: scale(1.06);
+    opacity: 1;
+  }
 }
 
 /* MOBILE SEARCH & TOP ROW */
@@ -581,13 +612,15 @@
 
 .mobile-search-bar {
   flex: 1;
-  background: rgba(255,255,255,0.08);
+  background: #ffffff;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.7rem 1.2rem;
+  padding: 0.5rem 1rem;
+  /* Reduced padding from 0.7rem to 0.5rem */
   border-radius: 12px;
-  color: #fff;
+  border: 1px solid #111827;
+  color: var(--navbar-text-main);
 }
 
 .mobile-search-bar input {
@@ -616,13 +649,13 @@
 }
 
 .mobile-search-results {
-  background: #111;
+  background: #ffffff;
   border-radius: 12px;
   margin: 0 1.5rem 1.5rem;
   max-height: 300px;
   overflow-y: auto;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .mob-search-item {
@@ -630,7 +663,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .mob-search-item img {
@@ -643,7 +676,7 @@
 .mob-search-item h6 {
   margin: 0;
   font-size: 0.9rem;
-  color: #fff;
+  color: var(--navbar-text-main);
 }
 
 .mob-search-item span {
@@ -651,12 +684,14 @@
   color: var(--navbar-accent);
 }
 
-.mob-searching, .mob-no-results {
+.mob-searching,
+.mob-no-results {
   padding: 1rem;
   text-align: center;
   color: #888;
   font-size: 0.9rem;
 }
+
 .nb-search-box {
   position: absolute;
   top: 100%;
@@ -664,9 +699,9 @@
   width: 350px;
   background: #1a1a1a;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 10px;
 }
 
@@ -685,30 +720,82 @@
   gap: 1rem;
   padding: 0.8rem 1rem;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.nb-results li:hover { background: #222; }
+.nb-results li:hover {
+  background: #222;
+}
 
-.nb-results li img { width: 40px; height: 40px; border-radius: 4px; }
+.nb-results li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
 
 /* ═══════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .nb-links { display: none; }
-  .nb-hamburger { display: block; order: 3; }
-  .nb-auth-buttons { display: none; }
-  .desktop-only-actions { display: none; }
-  .nb-logo { order: 1; }
-  .nb-search-wrap { order: 2; }
+@media (max-width: 768px) {
+  .nb-links {
+    display: none;
+  }
+
+  .nb-hamburger {
+    display: block;
+    order: 3;
+  }
+
+  .nb-auth-buttons {
+    display: none;
+  }
+
+  .desktop-only-actions {
+    display: none;
+  }
+
+  .nb-logo {
+    order: 1;
+  }
+
+  .nb-search-wrap {
+    order: 2;
+  }
 
   /* Hide brand and hamburger when menu is open */
   .navbar.menu-open .nb-logo,
   .navbar.menu-open .nb-hamburger {
     display: none !important;
   }
+
+  /* Container & Brand adjustments moved here */
+  .nb-container {
+    padding: 0 1rem;
+    /* Less padding on mobile for better left alignment */
+  }
+
+  .nb-brand-name {
+    font-size: 15px;
+    /* Smaller text on mobile */
+    letter-spacing: 0.02em;
+  }
+
+  .nb-logo-img {
+    height: 35px;
+    /* Smaller logo on mobile */
+    width: 35px;
+    border-radius: 6px;
+  }
+
+  .nb-logo {
+    gap: 8px;
+    /* Less gap on mobile */
+    margin-right: auto;
+    /* Push everything else to the right */
+  }
 }
+
+/* Merged into main 768px block above */
 
 .mobile-nav-icon-link {
   display: flex !important;
@@ -732,8 +819,4 @@
   margin-top: var(--header-height);
 }
 
-@media (max-width: 768px) {
-  .has-navbar {
-    margin-top: var(--header-height); /* Use variable for consistency */
-  }
-}
+/* Merged into main 768px block above */

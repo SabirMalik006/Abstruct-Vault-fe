@@ -35,7 +35,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid #e0e0e0;
-  border-top-color: #c4a47a;
+  border-top-color: #194933;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -73,7 +73,7 @@
 }
 
 .admin-sidebar::-webkit-scrollbar-thumb {
-  background: #c4a47a; /* Gold scrollbar as requested */
+  background: #194933; /* Gold scrollbar as requested */
   border-radius: 10px;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .logo-text span {
-  color: #c4a47a;
+  color: #194933;
 }
 
 /* Navigation */
@@ -179,7 +179,7 @@
 }
 
 .admin-nav-link.active {
-  background: linear-gradient(135deg, #c4a47a 0%, #b08d5f 100%);
+  background: linear-gradient(135deg, #194933 0%, #b08d5f 100%);
   color: #fff;
   box-shadow: 0 4px 16px rgba(196,164,122,0.35);
 }
@@ -226,7 +226,7 @@
 .admin-avatar {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #c4a47a, #b08d5f);
+  background: linear-gradient(135deg, #194933, #b08d5f);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -369,7 +369,7 @@
   right: 8px;
   width: 7px;
   height: 7px;
-  background: #c4a47a;
+  background: #194933;
   border-radius: 50%;
   border: 2px solid #fff;
 }
@@ -398,7 +398,7 @@
 .topbar-avatar {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #c4a47a, #b08d5f);
+  background: linear-gradient(135deg, #194933, #b08d5f);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -601,7 +601,7 @@
 
 .confirm-modal-icon.role-icon {
   background: rgba(196,164,122,0.1);
-  color: #c4a47a;
+  color: #194933;
 }
 
 .confirm-modal h3 {
@@ -664,7 +664,7 @@
 .confirm-primary-btn {
   flex: 1;
   padding: 12px;
-  background: linear-gradient(135deg, #c4a47a, #b08d5f);
+  background: linear-gradient(135deg, #194933, #b08d5f);
   border: none;
   border-radius: 12px;
   color: #fff;
@@ -802,7 +802,7 @@
 .modal-content .form-group textarea:focus,
 .modal-content .form-group select:focus {
   outline: none;
-  border-color: #c4a47a;
+  border-color: #194933;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(196,164,122,0.12);
 }
@@ -824,7 +824,7 @@
   align-items: center;
   gap: 8px;
   padding: 11px 22px;
-  background: linear-gradient(135deg, #c4a47a 0%, #b08d5f 100%);
+  background: linear-gradient(135deg, #194933 0%, #b08d5f 100%);
   border: none;
   border-radius: 12px;
   color: #fff;
@@ -910,14 +910,14 @@
 }
 
 .filter-tabs button:hover {
-  border-color: #c4a47a;
-  color: #c4a47a;
+  border-color: #194933;
+  color: #194933;
 }
 
 .filter-tabs button.active {
-  background: #c4a47a;
+  background: #194933;
   color: #fff;
-  border-color: #c4a47a;
+  border-color: #194933;
   box-shadow: 0 4px 12px rgba(196,164,122,0.3);
 }
 
@@ -986,7 +986,7 @@
   width: 22px;
   height: 22px;
   border: 2.5px solid #e0e0e0;
-  border-top-color: #c4a47a;
+  border-top-color: #194933;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

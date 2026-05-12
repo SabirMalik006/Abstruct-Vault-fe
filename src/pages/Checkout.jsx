@@ -414,7 +414,7 @@ export default function Checkout() {
                   onSelect={setPaymentMethod}
                 />
                 
-                <PaymentMethodBlock 
+                {/* <PaymentMethodBlock 
                   id="easypaisa"
                   icon={FiSmartphone}
                   title="EasyPaisa"
@@ -429,14 +429,14 @@ export default function Checkout() {
                   fileInputRef={fileInputRef}
                   uploading={uploading}
                   onRemoveFile={() => setScreenshotFile(null)}
-                />
+                /> */}
 
                 <PaymentMethodBlock 
                   id="jazzcash"
                   icon={FiSmartphone}
                   title="JazzCash"
                   desc="Transfer to our JazzCash account"
-                  accounts={[{ label: 'JazzCash', value: '0300-7654321 (The Abstruct Vault)' }]}
+                  accounts={[{ label: 'JazzCash', value: '03215366666 (The Abstruct Vault)' }]}
                   isSelected={paymentMethod === 'jazzcash'}
                   onSelect={setPaymentMethod}
                   paymentProof={paymentProof}
@@ -448,7 +448,7 @@ export default function Checkout() {
                   onRemoveFile={() => setScreenshotFile(null)}
                 />
 
-                <PaymentMethodBlock 
+                {/* <PaymentMethodBlock 
                   id="bank_transfer"
                   icon={FiCreditCard}
                   title="Bank Transfer"
@@ -466,12 +466,18 @@ export default function Checkout() {
                   fileInputRef={fileInputRef}
                   uploading={uploading}
                   onRemoveFile={() => setScreenshotFile(null)}
-                />
+                /> */}
               </div>
 
-              <div className="checkout-notes">
-                <label>Additional Notes</label>
-                <textarea name="orderNotes" value={formData.orderNotes} onChange={handleChange} placeholder="Instructions for the courier..." rows="2" />
+              <div className="checkout-notes form-group full">
+                <label>Additional Order Notes</label>
+                <textarea 
+                  name="orderNotes" 
+                  value={formData.orderNotes} 
+                  onChange={handleChange} 
+                  placeholder="Notes about your order, e.g. special notes for delivery." 
+                  rows="3" 
+                />
               </div>
 
               <div className="place-order-wrapper">

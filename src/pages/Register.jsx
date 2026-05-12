@@ -25,7 +25,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
       return toast.error('Passwords do not match');
     }
@@ -59,11 +59,11 @@ const Register = () => {
         {/* Left Side: Brand Info */}
         <div className="auth-side-panel">
           <div className="side-overlay"></div>
-          <img 
+          {/* <img 
             src="/safety_login_side_1777667349463.png" 
             alt="Safety Gear" 
             className="side-bg-image" 
-          />
+          /> */}
           <div className="side-content">
             <Link to="/" className="auth-logo">
               The Abstruct <span>Vault</span>
@@ -72,22 +72,22 @@ const Register = () => {
               <h2>Join the Community</h2>
               <p>Create an account to access exclusive deals, track your orders, and discover the latest fashion trends.</p>
             </div>
-            
+
             <ul className="benefits-list">
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Access to wholesale pricing</span>
+                <span>Exclusive early access to sales</span>
               </li>
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Dedicated safety consultancy</span>
+                <span>Personalized style recommendations</span>
               </li>
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Custom branding on safety gear</span>
+                <span>Loyalty points on every purchase</span>
               </li>
             </ul>
-            
+
             <div className="side-footer">
               <p>© 2026 The Abstruct Vault. All rights reserved.</p>
             </div>
@@ -99,7 +99,7 @@ const Register = () => {
           <div className="auth-card">
             <div className="auth-header">
               <h1>Create Account</h1>
-              <p>Sign up to start shopping for industrial gear.</p>
+              <p>Sign up to start shopping for premium fashion.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="auth-form">

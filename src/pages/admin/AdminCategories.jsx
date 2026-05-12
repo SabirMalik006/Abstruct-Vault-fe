@@ -5,13 +5,11 @@ import toast from 'react-hot-toast';
 import './AdminCategories.css';
 
 const DEFAULT_CATEGORIES = [
-  { name: 'Construction Site Supplies', slug: 'construction-site-supplies', description: 'Professional construction and site safety equipment', order: 1 },
-  { name: 'Safety and Emergency Equipment', slug: 'safety-emergency-equipment', description: 'Emergency response and personal safety gear', order: 2 },
-  { name: 'Power Backup and Energy Solutions', slug: 'power-backup-energy', description: 'UPS, generators and portable power solutions', order: 3 },
-  { name: 'Gadgets and Utility Items', slug: 'gadgets-utility', description: 'Everyday utility gadgets and smart devices', order: 4 },
-  { name: 'Storage and Packaging Solutions', slug: 'storage-packaging', description: 'Industrial storage and packaging materials', order: 5 },
-  { name: 'Lights and Portable Lighting Systems', slug: 'lights-portable-lighting', description: 'LED lights, emergency lights, portable systems', order: 6 },
-  { name: 'Premium Essentials', slug: 'premium-essentials', description: 'Premium quality essential items', order: 7 }
+  { name: 'Apparel', slug: 'apparel', description: 'Trendy and premium apparel for girls', order: 1 },
+  { name: 'Accessories', slug: 'accessories', description: 'Exquisite fashion accessories', order: 2 },
+  { name: 'Footwears', slug: 'footwears', description: 'Stylish and comfortable footwear', order: 3 },
+  { name: 'Jewellery', slug: 'jewellery', description: 'Premium designer jewellery collection', order: 4 },
+  { name: 'Bags', slug: 'bags', description: 'Luxury bags and handbags', order: 5 }
 ];
 
 export default function AdminCategories() {

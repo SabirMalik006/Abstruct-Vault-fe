@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FiSearch, FiShoppingCart, FiHeart, FiMenu, FiX, FiUser, FiPackage, FiChevronDown, FiShield, FiTruck, FiTool, FiZap, FiBox, FiActivity, FiStar } from 'react-icons/fi';
+import { FiSearch, FiShoppingCart, FiHeart, FiMenu, FiX, FiUser, FiPackage, FiChevronDown, FiShield, FiTruck, FiTool, FiZap, FiBox, FiActivity, FiStar, FiPhoneCall } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { getProducts, getCategories } from '../services/productService';
 import { getCurrentUser } from '../services/authService';
+import logoImg from '../assets/favicon.jpeg';
 import './Navbar.css';
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'Shop', path: '/collections/all-products' },
   { label: 'About', path: '/about' },
+  { label: 'Shop', path: '/collections/all-products' },
   { label: 'Contact', path: '/contact' },
-  { label: 'Reviews', path: '/#reviews' },
 ];
 
 const FALLBACK_SEARCH_IMAGE =
@@ -28,18 +28,18 @@ export default function Navbar() {
   const [categories, setCategories] = useState([]);
   const [catDropdownOpen, setCatDropdownOpen] = useState(false);
   const [mobileCatOpen, setMobileCatOpen] = useState(false);
-  
+
   const searchRef = useRef(null);
   const catRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const { cartItems } = useCart();
   const { wishlist } = useWishlist();
   const user = getCurrentUser();
 
-  const cartCount = (cartItems && Array.isArray(cartItems)) 
-    ? cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0) 
+  const cartCount = (cartItems && Array.isArray(cartItems))
+    ? cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0)
     : 0;
   const wishlistCount = (wishlist && Array.isArray(wishlist)) ? wishlist.length : 0;
 
@@ -137,21 +137,10 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="ann-bar">
-        <div className="ann-track">
-          {[...Array(6)].map((_, i) => (
-            <span key={i}>
-              ✨ New Season Collection | Exclusive Designer Styles | Shop Now! &nbsp;&nbsp;&nbsp;
-              🚚 Free Delivery on orders above Rs.10,000 &nbsp;&nbsp;&nbsp;
-              💎 Premium Quality Fabrics for Modern Lifestyle &nbsp;&nbsp;&nbsp;
-            </span>
-          ))}
-        </div>
-      </div>
-
       <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="container nb-container">
           <Link to="/" className="nb-logo" onClick={() => handleNavClick('/')}>
+            <img src={logoImg} alt="The Abstruct Vault" className="nb-logo-img" />
             <span className="nb-brand">
               <span className="nb-brand-name">The Abstruct Vault</span>
             </span>
@@ -162,7 +151,41 @@ export default function Navbar() {
           </button>
 
           <ul className="nb-links">
-            {navLinks.map(link => (
+            {/* Nav Links before Categories (Home, About, Shop) */}
+            {navLinks.filter(link => ['Home', 'About', 'Shop'].includes(link.label)).map(link => (
+              <li key={link.path}>
+                <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
+              </li>
+            ))}
+
+            {/* Categories Dropdown */}
+            <li className="nav-item-dropdown" ref={catRef}>
+              <button className="nav-drop-btn">
+                Categories <FiChevronDown size={14} />
+              </button>
+              <div className="nb-dropdown-card">
+                <div className="dropdown-grid">
+                  {categories.length > 0 ? (
+                    categories.map(cat => (
+                      <Link 
+                        key={cat._id || cat.id} 
+                        to={`/collections/${cat.slug}`} 
+                        className="dropdown-item" 
+                        onClick={() => handleNavClick()}
+                      >
+                        <span className="item-accent"></span>
+                        {cat.name}
+                      </Link>
+                    ))
+                  ) : (
+                    <span className="dropdown-empty">No categories found</span>
+                  )}
+                </div>
+              </div>
+            </li>
+
+            {/* Nav Links after Categories (Contact) */}
+            {navLinks.filter(link => !['Home', 'About', 'Shop'].includes(link.label)).map(link => (
               <li key={link.path}>
                 <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
               </li>
@@ -231,7 +254,7 @@ export default function Navbar() {
                   <Link to="/register" className="btn-signup-solid">Sign Up</Link>
                 </div>
               )}
-              
+
               {user?.role === 'admin' && (
                 <Link to="/admin/dashboard" className="nb-icon admin-badge" title="Admin Panel">
                   <FiPackage size={20} />
@@ -245,9 +268,9 @@ export default function Navbar() {
           <div className="mobile-menu-header">
             <div className="mobile-search-bar">
               <FiSearch />
-              <input 
-                type="text" 
-                placeholder="Search products..." 
+              <input
+                type="text"
+                placeholder="Search products..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
               />
@@ -279,11 +302,41 @@ export default function Navbar() {
             )}
 
             <ul className="mobile-nav-list">
-              {navLinks.map(link => (
+              {/* Nav Links before Categories (Home, About, Shop) */}
+              {navLinks.filter(link => ['Home', 'About', 'Shop'].includes(link.label)).map(link => (
                 <li key={link.path}>
                   <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
                 </li>
               ))}
+
+              <li>
+                <button className={`mobile-drop-btn ${mobileCatOpen ? 'active' : ''}`} onClick={() => setMobileCatOpen(!mobileCatOpen)}>
+                  Categories <FiChevronDown className="arrow" />
+                </button>
+                <div className={`mobile-drop-content ${mobileCatOpen ? 'open' : ''}`}>
+                  {categories.length > 0 ? (
+                    categories.map(cat => (
+                      <Link 
+                        key={cat._id || cat.id} 
+                        to={`/collections/${cat.slug}`} 
+                        onClick={() => handleNavClick()}
+                      >
+                        {cat.name}
+                      </Link>
+                    ))
+                  ) : (
+                    <span className="mob-no-cats">No categories</span>
+                  )}
+                </div>
+              </li>
+
+              {/* Nav Links after Categories (Contact) */}
+              {navLinks.filter(link => !['Home', 'About', 'Shop'].includes(link.label)).map(link => (
+                <li key={link.path}>
+                  <Link to={link.path} onClick={() => handleNavClick(link.path)}>{link.label}</Link>
+                </li>
+              ))}
+
               <li>
                 <Link to="/pages/wishlist" onClick={() => handleNavClick('/pages/wishlist')} className="mobile-nav-icon-link">
                   <FiHeart /> Wishlist {wishlistCount > 0 && <span className="mob-badge">{wishlistCount}</span>}
@@ -309,10 +362,13 @@ export default function Navbar() {
                   <Link to="/register" className="btn-signup-solid" onClick={() => handleNavClick('/register')}>Sign Up</Link>
                 </div>
               )}
-              
+
               <div className="mobile-contact-info">
-                <p>Need Help? Call us:</p>
-                <a href="tel:+923215366666">+92 3215366666</a>
+                <span>Need Help? Call Us:</span>
+                <a href="tel:+923215366666 ">
+                  <FiPhoneCall size={18} style={{ marginRight: '8px' }} />
+                  +92 323 0419266
+                </a>
               </div>
             </div>
           </div>
