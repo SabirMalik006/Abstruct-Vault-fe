@@ -17,7 +17,8 @@
   gap: 1.5rem;
 }
 
-.top-left, .top-right {
+.top-left,
+.top-right {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -152,7 +153,8 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: #0057FF; /* Electric Blue */
+  background: #0057FF;
+  /* Electric Blue */
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
@@ -203,7 +205,8 @@
 
 .card-info {
   padding: 1.25rem;
-  text-align: center; /* Center all text */
+  text-align: center;
+  /* Center all text */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -239,7 +242,8 @@
 .card-price {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center price */
+  justify-content: center;
+  /* Center price */
   gap: 0.75rem;
 }
 
@@ -291,7 +295,8 @@
 
 .btn-add-to-cart-full {
   width: 100%;
-  margin: 1rem 0 0.5rem; /* Centered and reduced bottom gap */
+  margin: 1rem 0 0.5rem;
+  /* Centered and reduced bottom gap */
   padding: 11px 0;
   background: #194933;
   color: white;
@@ -353,7 +358,7 @@
   .collections-main {
     grid-template-columns: 1fr;
   }
-  
+
   .mobile-filter-btn {
     display: flex;
   }
@@ -362,14 +367,44 @@
 @media (max-width: 640px) {
   .collections-top {
     padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .top-left {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .results-count {
+    width: 100%;
+    order: 3;
+    text-align: left;
+    font-size: 0.8rem;
+    padding-top: 0.25rem;
+    border-top: 1px solid #f1f5f9;
   }
   
   .top-right {
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.75rem;
   }
   
   .search-form {
+    width: 100%;
+  }
+
+  .sort-wrapper {
+    width: 100%;
+  }
+
+  .sort-wrapper select {
     width: 100%;
   }
   
@@ -382,3 +417,4 @@
     height: 250px;
   }
 }
+

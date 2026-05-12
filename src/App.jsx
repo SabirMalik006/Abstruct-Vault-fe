@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 // Core Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Lazy Loaded Pages
 const Home = lazy(() => import('./pages/Home'));
@@ -84,6 +85,7 @@ function Layout({ children }) {
     <>
       {!shouldHideNavbar && <Navbar />}
       <main className={!shouldHideNavbar ? 'has-navbar' : ''}>{children}</main>
+      <WhatsAppButton />
       {!shouldHideFooter && <Footer />}
     </>
   );
