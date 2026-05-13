@@ -178,3 +178,11 @@ img {
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
 }
+
+/* Pricing Style */
+.currency {
+  font-size: 0.9em;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-right: 1px;
+}

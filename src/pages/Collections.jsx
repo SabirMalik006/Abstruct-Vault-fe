@@ -222,9 +222,9 @@ const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted 
         </h3>
 
         <div className="card-price">
-          <span className="current-price">Rs.{product.price?.toLocaleString()}</span>
+          <span className="current-price"><span className="currency">Rs.</span>{product.price?.toLocaleString()}</span>
           {product.comparePrice > product.price && (
-            <span className="old-price">Rs.{product.comparePrice?.toLocaleString()}</span>
+            <span className="old-price"><span className="currency">Rs.</span>{product.comparePrice?.toLocaleString()}</span>
           )}
         </div>
         

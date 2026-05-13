@@ -12,7 +12,7 @@ import './Home.css';
 
 // Features array - same rahega
 const features = [
-  { icon: <FiTruck />, title: 'Free Delivery', desc: 'On orders above Rs.3,999' },
+  { icon: <FiTruck />, title: 'Free Delivery', desc: <>On orders above <span className="currency">Rs.</span>3,999</> },
   { icon: <FiRefreshCw />, title: 'Easy Returns', desc: '7-day hassle-free returns' },
   { icon: <FiShield />, title: 'Secure Payment', desc: 'COD & digital payments' },
   { icon: <FiHeadphones />, title: '24/7 Support', desc: 'Always here to help you' },
@@ -42,7 +42,7 @@ export default function Home() {
             id: hero._id,
             tag: hero.subtitle || 'Featured',
             title: hero.title,
-            subtitle: hero.description || 'Premium safety equipment',
+            subtitle: hero.description || 'Exquisite fashion for every girl',
             cta: hero.buttonText || 'Shop Now',
             ctaPath: hero.buttonLink || '/collections/all-products',
             image: hero.imageUrl,
@@ -277,7 +277,7 @@ export default function Home() {
           <div className="container">
             <p className="section-tag">Explore</p>
             <h2 className="section-title">Shop By Category</h2>
-            <p className="section-subtitle">Your safety, our priority — explore our premium protection gear</p>
+            <p className="section-subtitle">Your style, our passion — explore our curated collection of premium fashion.</p>
             <div className="categories-grid">
               {categories.slice(0, 4).map(cat => (
                 <Link key={cat.id} to={`/collections/${cat.slug}`} className="cat-card">
@@ -368,7 +368,7 @@ export default function Home() {
         {/* <section className="instagram-section">
           <div className="container" style={{ textAlign: 'center' }}>
             <p className="section-tag">Follow Us</p>
-            <h2 className="section-title">@AbstructVault.pk</h2>
+            <h2 className="section-title">@AbstractVault.pk</h2>
             <p className="section-subtitle">Tag us in your photos for a chance to be featured!</p>
             <div className="instagram-grid">
               {[

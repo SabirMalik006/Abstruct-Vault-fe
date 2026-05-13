@@ -322,7 +322,7 @@ export default function Checkout() {
       <header className="checkout-header">
         <div className="container">
           <Link to="/cart" className="back-link"><FiChevronLeft /> Return to Cart</Link>
-          <div className="logo">The Abstruct <span>Vault</span></div>
+          <div className="logo">The Abstract <span>Vault</span></div>
           <div className="secure-badge"><FiLock /> Secure Checkout</div>
         </div>
       </header>
@@ -419,7 +419,7 @@ export default function Checkout() {
                   icon={FiSmartphone}
                   title="EasyPaisa"
                   desc="Transfer to our EasyPaisa account"
-                  accounts={[{ label: 'EasyPaisa', value: '0300-1234567 (Abstruct Vault)' }]}
+                  accounts={[{ label: 'EasyPaisa', value: '0300-1234567 (Abstract Vault)' }]}
                   isSelected={paymentMethod === 'easypaisa'}
                   onSelect={setPaymentMethod}
                   paymentProof={paymentProof}
@@ -436,7 +436,7 @@ export default function Checkout() {
                   icon={FiSmartphone}
                   title="JazzCash"
                   desc="Transfer to our JazzCash account"
-                  accounts={[{ label: 'JazzCash', value: '03215366666 (The Abstruct Vault)' }]}
+                  accounts={[{ label: 'JazzCash', value: '03215366666 (The Abstract Vault)' }]}
                   isSelected={paymentMethod === 'jazzcash'}
                   onSelect={setPaymentMethod}
                   paymentProof={paymentProof}
@@ -503,7 +503,7 @@ export default function Checkout() {
                     <h4>{item.name}</h4>
                     {item.color && <p>{item.color}</p>}
                   </div>
-                  <div className="item-price">Rs.{(item.price * item.quantity).toLocaleString()}</div>
+                  <div className="item-price"><span className="currency">Rs.</span>{(item.price * item.quantity).toLocaleString()}</div>
                 </div>
               ))}
             </div>
@@ -511,15 +511,15 @@ export default function Checkout() {
             <div className="summary-totals">
               <div className="row">
                 <span>Subtotal</span>
-                <span>Rs.{subtotal.toLocaleString()}</span>
+                <span><span className="currency">Rs.</span>{subtotal.toLocaleString()}</span>
               </div>
               <div className="row">
                 <span>Shipping</span>
-                <span className={shipping === 0 ? 'free' : ''}>{shipping === 0 ? 'FREE' : `Rs.${shipping.toLocaleString()}`}</span>
+                <span className={shipping === 0 ? 'free' : ''}>{shipping === 0 ? 'FREE' : <><span className="currency">Rs.</span>{shipping.toLocaleString()}</>}</span>
               </div>
               <div className="row total">
                 <span>Grand Total</span>
-                <span>Rs.{total.toLocaleString()}</span>
+                <span><span className="currency">Rs.</span>{total.toLocaleString()}</span>
               </div>
             </div>
 

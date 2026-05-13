@@ -42,7 +42,7 @@ export default function ContactUs() {
         <div className="container">
           <div className="hero-content">
             <h1>Get in Touch</h1>
-            <p>We're here 24/7 to assist you with any questions about our safety equipment.</p>
+            <p>We're here 24/7 to assist you with any questions about your order or style.</p>
           </div>
         </div>
       </section>
@@ -63,11 +63,11 @@ export default function ContactUs() {
               <p>+92 3215366666</p>
               <p>📞 24/7 Available</p>
             </div>
-            <div className="contact-card">
+            {/* <div className="contact-card">
               <div className="contact-icon"><FiMail /></div>
               <h3>Email Us</h3>
               <p>info@horizonintegratedsolutions@gmail.com</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function ContactUs() {
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
-                  title="The Abstruct Vault - Islamabad Location"
+                  title="The Abstract Vault - Islamabad Location"
                 ></iframe>
               </div>
               <div className="map-badge">

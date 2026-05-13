@@ -39,7 +39,7 @@ const Register = () => {
       });
 
       if (response.token) {
-        toast.success('Account created successfully! Welcome to The Abstruct Vault.');
+        toast.success('Account created successfully! Welcome to The Abstract Vault.');
         navigate('/');
       } else {
         toast.error('Registration failed');
@@ -66,7 +66,7 @@ const Register = () => {
           /> */}
           <div className="side-content">
             <Link to="/" className="auth-logo">
-              The Abstruct <span>Vault</span>
+              The Abstract <span>Vault</span>
             </Link>
             <div className="side-text">
               <h2>Join the Community</h2>
@@ -89,7 +89,7 @@ const Register = () => {
             </ul>
 
             <div className="side-footer">
-              <p>© 2026 The Abstruct Vault. All rights reserved.</p>
+              <p>© 2026 The Abstract Vault. All rights reserved.</p>
             </div>
           </div>
         </div>

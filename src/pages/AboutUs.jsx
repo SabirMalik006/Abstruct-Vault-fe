@@ -13,35 +13,67 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* Leadership Message Section */}
+      <section className="leadership-message">
+        <div className="container">
+          <div className="message-box">
+            <span className="message-tag">A Message From Our Leadership</span>
+            <h2>Our Commitment to Your Style</h2>
+
+            <div className="message-content">
+              <p>In today's rapidly evolving fashion landscape, consumers face unprecedented challenges in finding authentic quality, optimizing their style choices, and maintaining a competitive edge through reliable and trendy fashion pieces.</p>
+
+              <p>At <strong>The Abstract Vault</strong>, we understand that successful fashion curation requires more than just clothing—it demands strategic vision, artistic excellence, and an unwavering commitment to our clients' confidence and success.</p>
+
+              <p>Our team brings together decades of experience in premium fashion, textile excellence, and modern silhouettes to deliver solutions that are not only robust but also perfectly aligned with contemporary trends and individual expressions.</p>
+
+              <p>We are proud to serve fashion enthusiasts, modern professionals, and style-conscious individuals who require the highest standards of reliability and elegance. Every collection we provide reflects our commitment to excellence and our understanding of the critical role style plays in modern life.</p>
+
+              <p>Thank you for considering <strong>The Abstract Vault</strong> as your style partner. We look forward to helping you achieve your fashion goals and ensuring a more stylish future for you.</p>
+            </div>
+
+            <div className="message-footer">
+              <div className="signature-area">
+                <div className="signature-font">
+                  <span className="sig-word">Ammad</span>
+                  <span className="sig-word">Khan</span>
+                </div>
+                <div className="leader-info">
+                  <span>COO, The Abstract Vault</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Brand Story */}
       <section className="brand-story">
         <div className="container">
           <div className="story-grid">
-            <div className="story-image-wrapper">
-              <div className="story-image">
-                <img 
-                  src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" 
-                  alt="Our Story"
-                />
-              </div>
+            <div className="story-image">
+              <img
+                src="https://images.pexels.com/photos/8470884/pexels-photo-8470884.jpeg"
+                alt="Our fashion design team"
+              />
             </div>
             <div className="story-content">
               <span className="story-tag">Our Background</span>
-              <h2>Your Destination for Fashion Excellence</h2>
-              <p>Founded in 2020, The Abstruct Vault was established with a clear mission: to redefine the fashion landscape in Pakistan by providing premium, trendy, and high-quality girls' apparel. What began as a specialized boutique has evolved into a leading destination for modern fashionistas.</p>
-              <p>Every piece in our collection is curated with attention to detail, fabric quality, and the latest global trends. We believe that fashion is more than just clothing—it's a way to express your unique personality and shine in every moment.</p>
+              <h2>Your Partner in Fashion Excellence</h2>
+              <p>Founded in 2020, The Abstract Vault was established with a clear mission: to bridge the gap in Pakistan's fashion sector by providing certified, high-performance apparel and trendy accessories. What began as a specialized boutique has evolved into a leading destination for professional-grade gear.</p>
+              <p>Every piece in our catalog is rigorously tested to meet the highest quality standards. We believe that the right style and craftsmanship don't just enhance appearance—they empower individuals to perform at their definitive best.</p>
               <div className="story-stats">
                 <div className="stat">
-                  <strong>50,000+</strong>
-                  <span>Happy Customers</span>
+                  <strong>10,000+</strong>
+                  <span>Style Deliveries</span>
                 </div>
                 <div className="stat">
-                  <strong>1,000+</strong>
-                  <span>Unique Designs</span>
+                  <strong>500+</strong>
+                  <span>Exclusive Designs</span>
                 </div>
                 <div className="stat">
                   <strong>4.9★</strong>
-                  <span>Style Rating</span>
+                  <span>Reliability Rating</span>
                 </div>
               </div>
             </div>
@@ -108,7 +140,7 @@ export default function AboutUs() {
       <section className="why-us">
         <div className="container">
           <div className="why-us-content">
-            <h2>Why Choose The Abstruct Vault?</h2>
+            <h2>Why Choose The Abstract Vault?</h2>
             <div className="features-grid">
               <div className="feature">
                 <div className="feature-icon"><FiStar /></div>
@@ -128,7 +160,7 @@ export default function AboutUs() {
                 <div className="feature-icon"><FiTruck /></div>
                 <div className="feature-text">
                   <strong>Fast Logistics</strong>
-                  <span>Expedited shipping for critical site equipment</span>
+                  <span>Expedited shipping for your favorite fashion pieces</span>
                 </div>
               </div>
               <div className="feature">
@@ -148,9 +180,75 @@ export default function AboutUs() {
           font-family: 'Inter', sans-serif;
         }
 
+        /* Leadership Message Section */
+        .leadership-message {
+          padding: 80px 0;
+          background: #fdfdfd;
+          background-image: radial-gradient(rgba(25, 73, 51, 0.05) 1px, transparent 1px);
+          background-size: 24px 24px;
+        }
 
+        .message-box {
+          max-width: 800px;
+          margin: 0 auto;
+          background: #ffffff;
+          padding: 60px 80px;
+          border-radius: 40px;
+          box-shadow: 0 30px 60px -15px rgba(0,0,0,0.08);
+          border: 1px solid rgba(25, 73, 51, 0.08);
+          position: relative;
+          text-align: left;
+        }
 
-        /* Hero Section */
+        .message-tag {
+          color: #194933;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          display: block;
+          margin-bottom: 1rem;
+        }
+
+        .message-box h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 2.5rem;
+          color: #111;
+          margin-bottom: 2rem;
+        }
+
+        .message-content p {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: #444;
+          margin-bottom: 1.5rem;
+        }
+
+        .message-footer {
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 1px solid #eee;
+        }
+
+        .signature-font {
+          font-family: 'Great Vibes', cursive;
+          font-size: 3.5rem;
+          color: #194933; /* Brand Green */
+          margin-bottom: 0.5rem;
+          display: flex;
+          gap: 15px;
+        }
+
+        .leader-info {
+          font-size: 1rem;
+          color: #111;
+          font-weight: 600;
+        }
+
+        .leader-info span {
+          color: #666;
+          font-weight: 400;
+        }        /* Hero Section */
         .about-hero {
           background: #194933;
           padding: 100px 0;

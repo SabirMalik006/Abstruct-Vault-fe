@@ -140,9 +140,9 @@ export default function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="container nb-container">
           <Link to="/" className="nb-logo" onClick={() => handleNavClick('/')}>
-            <img src={logoImg} alt="The Abstruct Vault" className="nb-logo-img" />
+            <img src={logoImg} alt="The Abstract Vault" className="nb-logo-img" />
             <span className="nb-brand">
-              <span className="nb-brand-name">The Abstruct Vault</span>
+              <span className="nb-brand-name">The Abstract Vault</span>
             </span>
           </Link>
 

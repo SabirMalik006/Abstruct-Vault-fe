@@ -45,7 +45,7 @@ export default function OrderSuccess() {
             <FiPackage />
             <div>
               <h4>Processing</h4>
-              <p>We're preparing your safety equipment for shipment.</p>
+              <p>We're preparing your stylish items for shipment.</p>
             </div>
           </div>
           <div className="step-item">

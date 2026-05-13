@@ -35,13 +35,14 @@
 ═══════════════════════════════════════════ */
 
 .hero-wrap {
-  height: calc(100vh - var(--header-height));
-  height: calc(100dvh - var(--header-height));
-  min-height: 560px;
-  max-height: 900px;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 600px;
+  max-height: 1000px;
   overflow: hidden;
   background: var(--bg);
   position: relative;
+  margin-top: calc(var(--nav-height) * -1);
 }
 
 .hero-track {
@@ -106,7 +107,7 @@
 /* Tag pill — clean & minimal */
 .hero-tag-badge {
   position: absolute;
-  top: 2.5rem;
+  top: 9.5rem;
   left: 5rem;
   font-family: var(--font-body);
   font-size: 0.6rem;
@@ -125,7 +126,7 @@
 /* Main text block */
 .hero-body {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 5rem;
   transform: translateY(-50%);
   width: 44%;
@@ -1016,6 +1017,16 @@
 
   .hero-bar {
     width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .hero-bar-btn {
+    color: #ffffff !important;
+    opacity: 0.9;
+  }
+
+  .hero-bar-btn:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .hero-slide::after {
@@ -1056,7 +1067,18 @@
   }
 
   .promo-text {
-    padding: 3rem 2rem;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .promo-text h2 {
+    font-size: 2.2rem;
+    margin: 1rem 0;
+  }
+
+  .promo-text p {
+    margin: 0 auto 2rem;
   }
 
   .promo-image {
@@ -1084,6 +1106,16 @@
 
   .feat-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feat-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .feat-icon {
+    margin: 0 auto 0.5rem;
   }
 
   .feat-item:nth-child(odd) {

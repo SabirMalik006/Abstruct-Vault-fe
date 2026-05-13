@@ -50,8 +50,8 @@ export default function Footer() {
       <div className="footer-top container">
         {/* Column 1: Brand Info */}
         <div className="footer-brand">
-          <Link to="/" className="footer-logo">The Abstruct <span>Vault</span></Link>
-          <p>Pakistan's premier destination for exquisite girls' fashion and trendy apparel. Curating elegance, style, and confidence for every occasion.</p>
+          <Link to="/" className="footer-logo">The Abstract <span>Vault</span></Link>
+          <p>Pakistan's premier destination for exquisite fashion and trendy apparel. Curating elegance, style, and confidence for every occasion.</p>
           <button className="footer-feedback-btn" onClick={() => setShowFeedbackModal(true)}>
             <FiMessageSquare /> Leave a Review
           </button>
@@ -61,11 +61,11 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Our Collection</h4>
           <ul>
-            <li><Link to="/collections/apparel">Apparel</Link></li>
-            <li><Link to="/collections/accessories">Accessories</Link></li>
-            <li><Link to="/collections/footwears">Footwears</Link></li>
-            <li><Link to="/collections/jewellery">Jewellery</Link></li>
-            <li><Link to="/collections/bags">Bags</Link></li>
+            <li><Link to="/collections/apparel" onClick={() => window.scrollTo(0, 0)}>Apparel</Link></li>
+            <li><Link to="/collections/accessories" onClick={() => window.scrollTo(0, 0)}>Accessories</Link></li>
+            <li><Link to="/collections/footwears" onClick={() => window.scrollTo(0, 0)}>Footwears</Link></li>
+            <li><Link to="/collections/jewellery" onClick={() => window.scrollTo(0, 0)}>Jewellery</Link></li>
+            <li><Link to="/collections/bags" onClick={() => window.scrollTo(0, 0)}>Bags</Link></li>
           </ul>
         </div>
 
@@ -73,9 +73,9 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Customer Care</h4>
           <ul>
-            <li><Link to="/about">About Our Story</Link></li>
-            <li><Link to="/pages/reviews">Customer Testimonials</Link></li>
-            <li><Link to="/contact">Get in Touch</Link></li>
+            <li><Link to="/about" onClick={() => window.scrollTo(0, 0)}>About Our Story</Link></li>
+            <li><Link to="/pages/reviews" onClick={() => window.scrollTo(0, 0)}>Customer Testimonials</Link></li>
+            <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Get in Touch</Link></li>
           </ul>
 
           <div className="social-links" style={{ marginTop: '2rem' }}>
@@ -88,11 +88,11 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom container">
-        <p>© {new Date().getFullYear()} The Abstruct Vault. All rights reserved. Made with ♥ in Pakistan</p>
-        <div className="payment-badges">
+        <p>© {new Date().getFullYear()} The Abstract Vault. All rights reserved.</p>
+        {/* <div className="payment-badges">
           <span>COD</span>
           <span>JazzCash</span>
-        </div>
+        </div> */}
       </div>
 
       {/* Feedback Modal */}

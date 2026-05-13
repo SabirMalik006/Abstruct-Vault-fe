@@ -175,7 +175,7 @@ export default function AdminDashboard() {
       <div className="dashboard-top">
         <div className="welcome-msg">
           <h1>Industrial Insights</h1>
-          <p>Real-time overview of The Abstruct Vault operations.</p>
+          <p>Real-time overview of The Abstract Vault operations.</p>
         </div>
         <div className="date-picker">
           <FiCalendar /> <span>This Month</span>
