@@ -304,8 +304,8 @@ export default function ProductDetail() {
             <div className="guarantee-item">
               <FiTruck />
               <div>
-                <strong>Fast Logistics</strong>
-                <span>On orders above <span className="currency">Rs.</span>10,000</span>
+                <strong>Vaulted Logistics</strong>
+                <span>Experience our premium fashion delivery</span>
               </div>
             </div>
             <div className="guarantee-item">
@@ -343,14 +343,14 @@ export default function ProductDetail() {
           {activeTab === 'description' && (
             <div className="tab-pane">
               <h3>Product Description</h3>
-              <p>{product.description || `The ${product.name} is a professional-grade solution crafted for durability and performance in demanding environments. Built to international safety standards, it ensures maximum protection and efficiency for your workplace.`}</p>
+              <p>{product.description || `The ${product.name} is an exclusive piece from our signature collection, designed for elegance and unmatched style. Every detail reflects our commitment to premium fashion and contemporary aesthetics.`}</p>
               <ul>
-                <li>Certified safety standards (CE/ANSI)</li>
-                <li>Durable, industrial-grade construction</li>
-                <li>Ergonomic design for comfortable usage</li>
-                <li>High-performance specifications</li>
-                <li>Standard warranty included</li>
-                <li>Tested for extreme conditions</li>
+                <li>Premium quality fabrics and materials</li>
+                <li>Exclusive, limited-edition designs</li>
+                <li>Meticulous attention to detail</li>
+                <li>Contemporary and timeless silhouettes</li>
+                <li>Part of our Signature Collection</li>
+                <li>Curated for fashion excellence</li>
               </ul>
             </div>
           )}
@@ -440,8 +440,8 @@ export default function ProductDetail() {
           {activeTab === 'shipping' && (
             <div className="tab-pane">
               <h3>Shipping & Returns</h3>
-              <p><strong>Delivery:</strong> 2-4 business days across Pakistan</p>
-              <p><strong>Free shipping:</strong> On orders above <span className="currency">Rs.</span>10,000</p>
+              <p><strong>Standard Delivery:</strong> 2-4 business days across Pakistan</p>
+              <p><strong>Elite Fashion:</strong> Discover our latest signature collection</p>
               <p><strong>COD:</strong> Available nationwide</p>
               <p><strong>Returns:</strong> 7-day easy return policy if product is unused and in original packaging</p>
             </div>

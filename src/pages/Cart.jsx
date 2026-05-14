@@ -8,8 +8,7 @@ export default function Cart() {
   const navigate = useNavigate();
 
   const subtotal = getCartTotal();
-  const shippingThreshold = 10000;
-  const shipping = subtotal >= shippingThreshold ? 0 : 500;
+  const shipping = 250; // Standard flat rate for all orders
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
@@ -113,11 +112,9 @@ export default function Cart() {
                   <span>Shipping</span>
                   <span>{shipping === 0 ? <span className="free">FREE</span> : <><span className="currency">Rs.</span>{shipping.toLocaleString()}</>}</span>
                 </div>
-                {shipping > 0 && (
                   <div className="shipping-info">
-                    <FiTruck /> Spend <strong><span className="currency">Rs.</span>{(shippingThreshold - subtotal).toLocaleString()}</strong> more for FREE shipping!
+                    <FiTruck /> Discover our latest <strong>Signature Fashion</strong> pieces!
                   </div>
-                )}
                 <div className="summary-total">
                   <span>Total</span>
                   <span><span className="currency">Rs.</span>{total.toLocaleString()}</span>

@@ -12,7 +12,7 @@ import './Home.css';
 
 // Features array - same rahega
 const features = [
-  { icon: <FiTruck />, title: 'Free Delivery', desc: <>On orders above <span className="currency">Rs.</span>3,999</> },
+  { icon: <FiTruck />, title: 'Premium Fashion', desc: <>Curated collections for your <span className="vault-highlight">Elite Style</span></> },
   { icon: <FiRefreshCw />, title: 'Easy Returns', desc: '7-day hassle-free returns' },
   { icon: <FiShield />, title: 'Secure Payment', desc: 'COD & digital payments' },
   { icon: <FiHeadphones />, title: '24/7 Support', desc: 'Always here to help you' },
@@ -42,7 +42,7 @@ export default function Home() {
             id: hero._id,
             tag: hero.subtitle || 'Featured',
             title: hero.title,
-            subtitle: hero.description || 'Exquisite fashion for every girl',
+            subtitle: hero.description || 'Exquisite fashion for every style',
             cta: hero.buttonText || 'Shop Now',
             ctaPath: hero.buttonLink || '/collections/all-products',
             image: hero.imageUrl,

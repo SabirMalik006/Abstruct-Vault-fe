@@ -158,7 +158,7 @@ export default function Checkout() {
   };
 
   const subtotal = getCartTotal();
-  const shipping = subtotal > 10000 ? 0 : 500;
+  const shipping = 250;
   const total = subtotal + shipping;
 
   const validateShipping = () => {
@@ -514,8 +514,8 @@ export default function Checkout() {
                 <span><span className="currency">Rs.</span>{subtotal.toLocaleString()}</span>
               </div>
               <div className="row">
-                <span>Shipping</span>
-                <span className={shipping === 0 ? 'free' : ''}>{shipping === 0 ? 'FREE' : <><span className="currency">Rs.</span>{shipping.toLocaleString()}</>}</span>
+                <span>Standard Delivery</span>
+                <span><span className="currency">Rs.</span>{shipping.toLocaleString()}</span>
               </div>
               <div className="row total">
                 <span>Grand Total</span>

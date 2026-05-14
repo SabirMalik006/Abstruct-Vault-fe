@@ -8,7 +8,7 @@ export default function AboutUs() {
         <div className="container">
           <div className="hero-content">
             <h1 className="hero-title">Our Mission</h1>
-            <p className="hero-subtitle">Empowering every girl with exquisite fashion, confidence, and timeless style.</p>
+            <p className="hero-subtitle">Empowering every individual with exquisite fashion, confidence, and timeless style.</p>
           </div>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function AboutUs() {
             <div className="mission-card">
               <div className="mission-icon"><FiTarget /></div>
               <h3>Our Mission</h3>
-              <p>To provide accessible, high-quality, and trendy fashion solutions that inspire confidence and creativity in girls across Pakistan.</p>
+              <p>To provide accessible, high-quality, and trendy fashion solutions that inspire confidence and creativity in every individual across Pakistan.</p>
             </div>
             <div className="mission-card">
               <div className="mission-icon"><FiHeart /></div>
@@ -159,8 +159,8 @@ export default function AboutUs() {
               <div className="feature">
                 <div className="feature-icon"><FiTruck /></div>
                 <div className="feature-text">
-                  <strong>Fast Logistics</strong>
-                  <span>Expedited shipping for your favorite fashion pieces</span>
+                  <strong>Vaulted Logistics</strong>
+                  <span>Secure delivery for your favorite fashion pieces</span>
                 </div>
               </div>
               <div className="feature">

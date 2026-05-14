@@ -478,3 +478,26 @@
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 330px) {
+  .btn-primary-full {
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    gap: 5px;
+    letter-spacing: 0.02em;
+  }
+
+  .detail-actions {
+    gap: 8px;
+  }
+
+  .btn-wishlist, 
+  .btn-share {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .detail-price {
+    font-size: 1.5rem;
+  }
+}

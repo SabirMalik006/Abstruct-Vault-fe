@@ -72,7 +72,7 @@ const Login = () => {
             <ul className="benefits-list">
               <li>
                 <FiCheckCircle className="benefit-icon" />
-                <span>Curated designer collections for girls</span>
+                <span>Curated designer collections for your Elite Style</span>
               </li>
               <li>
                 <FiCheckCircle className="benefit-icon" />

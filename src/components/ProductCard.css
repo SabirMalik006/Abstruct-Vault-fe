@@ -281,3 +281,22 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 330px) {
+  .btn-add-to-cart-full {
+    padding: 7px 0;
+    font-size: 0.7rem;
+    margin: 0.5rem 0.25rem;
+    width: calc(100% - 0.5rem);
+    gap: 4px;
+    letter-spacing: 0;
+  }
+  
+  .btn-add-to-cart-full svg {
+    font-size: 0.85rem;
+  }
+  
+  .product-info {
+    padding: 0.75rem 0.4rem 0.4rem;
+  }
+}
