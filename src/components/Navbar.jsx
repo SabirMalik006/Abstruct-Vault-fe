@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { getProducts, getCategories } from '../services/productService';
 import { getCurrentUser } from '../services/authService';
-import logoImg from '../assets/favicon.jpeg';
+import logoImg from '../assets/new-fav.jpeg';
 import './Navbar.css';
 
 const navLinks = [
