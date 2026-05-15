@@ -39,7 +39,7 @@ export default function AboutUs() {
                   <span className="sig-word">Khan</span>
                 </div>
                 <div className="leader-info">
-                  <span>COO, The Abstract Vault</span>
+                  <span>CEO, <br /> The Abstract Vault</span>
                 </div>
               </div>
             </div>
@@ -231,12 +231,13 @@ export default function AboutUs() {
         }
 
         .signature-font {
-          font-family: 'Great Vibes', cursive;
+          font-family: 'Alex Brush', cursive;
           font-size: 3.5rem;
           color: #194933; /* Brand Green */
           margin-bottom: 0.5rem;
           display: flex;
           gap: 15px;
+          text-transform: capitalize;
         }
 
         .leader-info {
@@ -683,11 +684,35 @@ export default function AboutUs() {
           .feature {
             padding: 15px 20px;
           }
+          .message-box {
+            padding: 40px 25px;
+            border-radius: 24px;
+          }
+          .message-box h2 {
+            font-size: 1.8rem;
+          }
+          .signature-font {
+            font-size: 2.2rem;
+            gap: 10px;
+          }
+          .leadership-message {
+            padding: 40px 0;
+          }
         }
         
         @media (max-width: 480px) {
           .container {
             padding: 0 16px;
+          }
+          .message-box {
+            padding: 30px 20px;
+          }
+          .signature-font {
+            font-size: 1.8rem;
+            gap: 8px;
+          }
+          .message-box h2 {
+            font-size: 1.5rem;
           }
           .hero-title {
             font-size: 28px;
