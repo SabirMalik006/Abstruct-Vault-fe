@@ -1,4 +1,6 @@
 import { FiAward, FiHeart, FiUsers, FiTarget, FiTruck, FiShield, FiRefreshCw, FiStar, FiCheckCircle } from 'react-icons/fi';
+import signImg from '../assets/sign.jpeg';
+import fontImg from '../assets/font.jpeg';
 
 export default function AboutUs() {
   return (
@@ -34,12 +36,12 @@ export default function AboutUs() {
 
             <div className="message-footer">
               <div className="signature-area">
-                <div className="signature-font">
-                  <span className="sig-word">Ammad</span>
-                  <span className="sig-word">Khan</span>
+                <div className="signature-img-wrapper">
+                  <img src={signImg} alt="Ammad Khan Signature" className="signature-img" />
+                  <img src={fontImg} alt="Ammad Khan" className="font-img" />
                 </div>
                 <div className="leader-info">
-                  <span>CEO, <br /> The Abstract Vault</span>
+                  <span>CEO, The Abstract Vault</span>
                 </div>
               </div>
             </div>
@@ -230,14 +232,31 @@ export default function AboutUs() {
           border-top: 1px solid #eee;
         }
 
-        .signature-font {
-          font-family: 'Alex Brush', cursive;
-          font-size: 3.5rem;
-          color: #194933; /* Brand Green */
-          margin-bottom: 0.5rem;
-          display: flex;
-          gap: 15px;
-          text-transform: capitalize;
+        .signature-img-wrapper {
+          margin-bottom: 1rem;
+          max-width: 180px;
+          transition: max-width 0.3s ease;
+        }
+
+        .signature-img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+          mix-blend-mode: multiply;
+          filter: grayscale(1) contrast(1.5) brightness(1.05);
+          background: transparent;
+        }
+
+        .font-img {
+          width: 100%;
+          max-width: 190px;
+          height: auto;
+          display: block;
+          margin: 0.5rem auto 0;
+          mix-blend-mode: multiply;
+          filter: grayscale(1) contrast(1.5) brightness(1.05);
+          background: transparent;
         }
 
         .leader-info {
@@ -691,9 +710,11 @@ export default function AboutUs() {
           .message-box h2 {
             font-size: 1.8rem;
           }
-          .signature-font {
-            font-size: 2.2rem;
-            gap: 10px;
+          .signature-img-wrapper {
+            max-width: 160px;
+          }
+          .font-img {
+            max-width: 160px;
           }
           .leadership-message {
             padding: 40px 0;
@@ -707,9 +728,11 @@ export default function AboutUs() {
           .message-box {
             padding: 30px 20px;
           }
-          .signature-font {
-            font-size: 1.8rem;
-            gap: 8px;
+          .signature-img-wrapper {
+            max-width: 130px;
+          }
+          .font-img {
+            max-width: 130px;
           }
           .message-box h2 {
             font-size: 1.5rem;
