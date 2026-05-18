@@ -106,8 +106,17 @@ export default function ProductCard({ product }) {
             loading="lazy"
           />
         )}
-        {product.badge && <span className="badge-new">{product.badge}</span>}
-        {productDiscount > 0 && <span className="badge-discount">-{productDiscount}%</span>}
+        <div className="card-badges">
+          {(product.isFeatured || product.badge === 'Featured') && (
+            <span className="badge-featured"><FiStar /> Featured</span>
+          )}
+          {product.badge && product.badge !== 'Featured' && (
+            <span className="badge-new">{product.badge}</span>
+          )}
+        </div>
+        {productDiscount > 0 && (
+          <span className="badge-discount">-{productDiscount}%</span>
+        )}
         {!inStock && <span className="badge-out">Out of Stock</span>}
 
         <div className={`product-actions ${hovering ? 'visible' : ''}`}>

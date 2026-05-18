@@ -1,0 +1,1 @@
+import{v as s}from"./index-BJthN6B7.js";const r=async()=>(await s.get("/hero")).data,n=async()=>(await s.get("/hero/all")).data,c=async e=>(await s.post("/hero",e)).data,p=async(e,t)=>(await s.put(`/hero/${e}`,t)).data,d=async e=>(await s.delete(`/hero/${e}`)).data;export{n as a,c,d,r as g,p as u};

@@ -83,6 +83,44 @@
   text-align: center;
 }
 
+.card-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.card-badges .badge-new {
+  position: static;
+  top: auto;
+  left: auto;
+}
+
+.badge-featured {
+  background: #194933;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 10px rgba(25, 73, 51, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.badge-featured svg {
+  font-size: 0.75rem;
+  stroke-width: 2.5;
+}
+
 /* Actions */
 .product-actions {
   position: absolute;
@@ -255,6 +293,30 @@
 }
 
 @media (max-width: 480px) {
+  .card-badges {
+    top: 8px;
+    left: 8px;
+    gap: 4px;
+  }
+  
+  .badge-new,
+  .badge-featured,
+  .badge-discount {
+    padding: 4px 8px;
+    font-size: 0.55rem;
+    border-radius: 6px;
+  }
+  
+  .badge-discount {
+    top: 8px;
+    right: 8px;
+    left: auto;
+  }
+  
+  .badge-featured svg {
+    font-size: 0.65rem;
+  }
+
   .btn-add-to-cart-full {
     padding: 9px 0;
     font-size: 0.75rem;
@@ -283,6 +345,31 @@
 }
 
 @media (max-width: 330px) {
+  .card-badges {
+    top: 6px;
+    left: 6px;
+    gap: 3px;
+  }
+  
+  .card-badges .badge-new,
+  .badge-featured,
+  .badge-discount {
+    padding: 3px 6px;
+    font-size: 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  
+  .badge-discount {
+    top: 6px;
+    right: 6px;
+    left: auto;
+  }
+  
+  .badge-featured svg {
+    font-size: 0.6rem;
+  }
+
   .btn-add-to-cart-full {
     padding: 7px 0;
     font-size: 0.7rem;

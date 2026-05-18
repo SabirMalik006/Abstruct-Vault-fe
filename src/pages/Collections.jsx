@@ -169,6 +169,8 @@ const Collections = () => {
 };
 
 const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted }) => {
+  const isFeatured = product.isFeatured || product.badge === 'Featured';
+  
   return (
     <div className={`product-card ${viewMode}`}>
       <div className="card-image-wrap">
@@ -180,6 +182,11 @@ const ProductCard = ({ product, viewMode, onAddToCart, onWishlist, isWishlisted 
           }
           alt={product.name}
         />
+        <div className="card-badges">
+          {isFeatured && (
+            <span className="badge-featured"><FiStar /> Featured</span>
+          )}
+        </div>
         {product.comparePrice > product.price && (
           <span className="sale-badge">Sale</span>
         )}
