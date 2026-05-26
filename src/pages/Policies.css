@@ -1,0 +1,93 @@
+.policies-page {
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.policies-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/3735641/pexels-photo-3735641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+}
+
+.policies-hero .hero-title {
+  font-size: 3.5rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.policies-hero .hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.policies-content-section {
+  padding: 80px 0;
+}
+
+.policies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.policy-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.policy-card:hover {
+  transform: translateY(-10px);
+}
+
+.policy-icon {
+  width: 60px;
+  height: 60px;
+  background: #194933;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.policy-card h2 {
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.policy-text p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.policy-text strong {
+  color: #194933;
+}
+
+@media (max-width: 768px) {
+  .policies-hero .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .policies-content-section {
+    padding: 50px 0;
+  }
+  
+  .policy-card {
+    padding: 30px;
+  }
+}

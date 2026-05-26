@@ -74,6 +74,7 @@ export default function Footer() {
           <h4>Customer Care</h4>
           <ul>
             <li><Link to="/about" onClick={() => window.scrollTo(0, 0)}>About Our Story</Link></li>
+            <li><Link to="/policies" onClick={() => window.scrollTo(0, 0)}>Our Policies</Link></li>
             <li><Link to="/pages/reviews" onClick={() => window.scrollTo(0, 0)}>Customer Testimonials</Link></li>
             <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Get in Touch</Link></li>
           </ul>

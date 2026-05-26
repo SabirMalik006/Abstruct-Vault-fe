@@ -23,6 +23,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Profile = lazy(() => import('./pages/Profile'));
+const Policies = lazy(() => import('./pages/Policies'));
 const OrderSuccess = lazy(() => import('./pages/OrderSuccess'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const VerifyOTP = lazy(() => import('./pages/VerifyOTP'));
@@ -114,6 +115,7 @@ export default function App() {
               <Route path="/pages/reviews" element={<Reviews />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/about" element={<AboutUs />} />
+              <Route path="/policies" element={<Policies />} />
               <Route path="/profile" element={<Profile />} />
               
               {/* Checkout - No Navbar/Footer */}
