@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FiChevronRight, FiFilter, FiX } from 'react-icons/fi';
 import './CategorySidebar.css';
 
-// helo
+
 
 const CategorySidebar = ({ categories, activeCategory, onCategoryChange, isOpen, onClose }) => {
   return (
