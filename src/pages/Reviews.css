@@ -52,6 +52,14 @@
   padding-top: 3rem;
 }
 
+.loading-state, .empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
 .review-card {
   background: var(--white);
   border: 1px solid var(--border);

@@ -22,6 +22,34 @@
   background: #fffbeb;
 }
 
+.review-admin-card.featured {
+  border-left: 4px solid #fbbf24;
+  background: #fffcf0;
+}
+
+.name-featured-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.featured-badge {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+.featured-badge svg {
+  fill: #fbbf24;
+  color: #fbbf24;
+}
+
 .review-card-header {
   display: flex;
   justify-content: space-between;
@@ -90,35 +118,210 @@
   line-height: 1.5;
 }
 
+.review-card-actions button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.btn-approve {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.btn-approve:hover {
+  background: #dcfce7;
+}
+
+.btn-feature {
+  background: #fefce8;
+  color: #854d0e;
+}
+
+.btn-feature:hover {
+  background: #fef9c3;
+}
+
+.btn-feature.active {
+  background: #fbbf24;
+  color: white;
+}
+
+.btn-feature.active:hover {
+  background: #f59e0b;
+}
+
+.btn-delete {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+}
+
 .review-card-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
 }
 
-.review-card-actions button {
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 700;
+.admin-loading {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #64748b;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #64748b;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.filter-tabs button {
+  padding: 0.75rem 1rem;
+  background: none;
   border: none;
+  border-bottom: 2px solid transparent;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.2s;
 }
 
-.btn-approve {
-  background: #10b981;
-  color: white;
+.filter-tabs button:hover {
+  color: #1e293b;
 }
 
-.btn-approve:hover { background: #059669; }
+.filter-tabs button.active {
+  color: #c4a47a;
+  border-bottom-color: #c4a47a;
+}
 
-.btn-delete {
-  background: #fee2e2;
+.empty-state {
+  text-align: center;
+  padding: 4rem;
+  color: #94a3b8;
+}
+
+.empty-state p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Delete Modal */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.confirm-modal {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.confirm-modal-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1.5rem;
+}
+
+.delete-icon {
+  background: #fef2f2;
   color: #ef4444;
 }
 
-.btn-delete:hover { background: #fecaca; }
+.confirm-modal h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.confirm-modal p {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.confirm-modal-actions button {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confirm-cancel-btn {
+  background: #f1f5f9;
+  border: none;
+  color: #475569;
+}
+
+.confirm-cancel-btn:hover { background: #e2e8f0; }
+
+.confirm-danger-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+}
+
+.confirm-danger-btn:hover { background: #dc2626; }
+
+.confirm-danger-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

@@ -47,6 +47,16 @@ const AdminReviews = () => {
     }
   };
 
+  const handleToggleFeatured = async (reviewId) => {
+    try {
+      const res = await api.put(`/reviews/${reviewId}/feature`);
+      toast.success(res.data.data.isFeatured ? 'Review featured!' : 'Review unfeatured');
+      fetchReviews();
+    } catch (err) {
+      toast.error('Failed to update featured status');
+    }
+  };
+
   const handleDelete = async () => {
     setSubmitting(true);
     try {
@@ -64,6 +74,7 @@ const AdminReviews = () => {
   const filteredReviews = reviews.filter(r => {
     if (filter === 'pending') return !r.isApproved;
     if (filter === 'approved') return r.isApproved;
+    if (filter === 'featured') return r.isFeatured;
     return true;
   });
 
@@ -82,6 +93,7 @@ const AdminReviews = () => {
         <button className={filter === 'all' ? 'active' : ''} onClick={() => setFilter('all')}>All Reviews</button>
         <button className={filter === 'pending' ? 'active' : ''} onClick={() => setFilter('pending')}>Pending Approval</button>
         <button className={filter === 'approved' ? 'active' : ''} onClick={() => setFilter('approved')}>Approved</button>
+        <button className={filter === 'featured' ? 'active' : ''} onClick={() => setFilter('featured')}>Featured</button>
       </div>
 
       <div className="reviews-list">
@@ -92,12 +104,15 @@ const AdminReviews = () => {
           </div>
         ) : (
           filteredReviews.map(review => (
-            <div key={review._id} className={`review-admin-card ${!review.isApproved ? 'pending' : ''}`}>
+            <div key={review._id} className={`review-admin-card ${!review.isApproved ? 'pending' : ''} ${review.isFeatured ? 'featured' : ''}`}>
               <div className="review-card-header">
                 <div className="reviewer-info">
                   <div className="rev-avatar"><FiUser /></div>
                   <div>
-                    <h3>{review.user?.name || review.guestName || 'Anonymous'}</h3>
+                    <div className="name-featured-row">
+                      <h3>{review.user?.name || review.guestName || 'Anonymous'}</h3>
+                      {review.isFeatured && <span className="featured-badge"><FiStar /> Featured</span>}
+                    </div>
                     <div className="rev-stars">
                       {[...Array(5)].map((_, i) => (
                         <FiStar key={i} className={i < review.rating ? 'filled' : ''} />
@@ -121,6 +136,13 @@ const AdminReviews = () => {
                     <FiCheck /> Approve
                   </button>
                 )}
+                <button 
+                  className={`btn-feature ${review.isFeatured ? 'active' : ''}`} 
+                  onClick={() => handleToggleFeatured(review._id)}
+                  title={review.isFeatured ? 'Remove from Featured' : 'Mark as Featured'}
+                >
+                  <FiStar /> {review.isFeatured ? 'Unfeature' : 'Feature'}
+                </button>
                 <button className="btn-delete" onClick={() => setDeleteModal({ open: true, id: review._id })}>
                   <FiTrash2 /> Delete
                 </button>
